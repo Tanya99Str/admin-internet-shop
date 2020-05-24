@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box!important;
+}
+
+p, span, h1, h2, h3, h4 {
+  margin: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.pointer {
+  cursor: pointer!important;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.display-flex {
+  display: flex !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.transform90deg {
+  transform: rotate(90deg);
+}
+
+.transform180deg {
+  transform: rotate(180deg);
+}

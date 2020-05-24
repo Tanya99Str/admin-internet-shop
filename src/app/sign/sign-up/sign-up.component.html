@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="header">
+    <h1>Створення аккаунту</h1>
+    <p class="detail">Введіть свої дані</p>
+  </div>
+  <form [formGroup]="signUpFormGroup">
+    <div class="one-elem">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Ім'я</mat-label>
+        <input matInput formControlName="firstName" type="text">
+        <mat-icon matSuffix>
+        </mat-icon>
+      </mat-form-field>
+    </div>
+  </form>
+
+</div>

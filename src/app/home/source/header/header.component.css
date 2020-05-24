@@ -1,0 +1,114 @@
+p, span {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  display: block;
+}
+
+.container-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .4vh 5%;
+  background: #ffffff;
+  box-shadow: -3px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.container-bottom {
+  width: 100%;
+  height: 60vh;
+  background: linear-gradient(180.71deg, #F0AFBE 38.78%, #D98EA1 98.73%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.container-bottom svg {
+  position: relative;
+  height: 55vh!important;
+  margin-right: 15vw;
+}
+
+.container-name {
+  width: 20vw;
+  height: 20vw;
+  background: rgba(246, 206, 215, 0.69);
+  border-radius: 100%;
+  position: absolute;
+  top: calc((60vh - 20vw)/2);
+  left: 20vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1vw;
+}
+
+.container-name p {
+  font-family: Satisfy, sans-serif;
+  color: #FB9CB4;
+  font-feature-settings: 'tnum' on, 'onum' on;
+  font-size: 5vw;
+}
+
+.circle {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 100%;
+  background: rgba(246, 206, 215, 0.75);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  position: absolute;
+  top: 10vh;
+  left: 5vw;
+}
+
+.list {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ul {
+  width: calc(100% - 5vh - 2vw);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+li {
+  color: #737171;
+  font-size: 1.2vw;
+  cursor: pointer;
+}
+
+.list svg:hover * {
+  fill: #ADAAAA!important;
+}
+
+.menu-profile {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 100%;
+  /*box-shadow: 0 3px 4px rgba(0,0,0,.25);*/
+  border: 1px dotted #C7C3C3;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+}
+
+.menu-profile:hover {
+  border: 1px dotted #ADAAAA;
+}
+
+.menu-profile:hover svg * {
+  fill: #ADAAAA!important;
+}
+

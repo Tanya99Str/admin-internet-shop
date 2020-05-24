@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="header">
+    <h1>Вітаємо в <span>Your Style</span></h1>
+    <p class="detail">У нашому магазині Ви знайдете речі на любу подію</p>
+  </div>
+  <form [formGroup]="signInFormGroup">
+    <div class="one-elem">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Логін</mat-label>
+        <input matInput formControlName="username" type="text">
+        <mat-icon matSuffix>
+        </mat-icon>
+        <mat-error>Введіть логін</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="one-elem">
+      <mat-form-field style="width: 100%; margin-top: 1vh;">
+        <mat-label>Пароль</mat-label>
+        <input class="input-pass" matInput
+               [type]="hide ? 'password' : 'text'"
+               [ngClass]="{'hide-text':!hide, 'no-hide-text':hide}"
+               formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide">
+          <mat-icon (click)="hide ? 'visibility_off' : 'visibility'" *ngIf="hide">
+            <svg width="20" height="19" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10 0C5.45455 0 1.57273 2.93169 0 7.07C1.57273 11.2083 5.45455 14.14 10 14.14C14.5455 14.14 18.4273 11.2083 20 7.07C18.4273 2.93169 14.5455 0 10 0ZM10 11.7833C7.49091 11.7833 5.45455 9.67176 5.45455 7.07C5.45455 4.46824 7.49091 2.35667 10 2.35667C12.5091 2.35667 14.5455 4.46824 14.5455 7.07C14.5455 9.67176 12.5091 11.7833 10 11.7833ZM10 4.242C8.49091 4.242 7.27273 5.50517 7.27273 7.07C7.27273 8.63483 8.49091 9.898 10 9.898C11.5091 9.898 12.7273 8.63483 12.7273 7.07C12.7273 5.50517 11.5091 4.242 10 4.242Z"
+                fill="#C7BEBE"/>
+            </svg>
+          </mat-icon>
+          <mat-icon (click)="hide ? 'visibility_off' : 'visibility'" *ngIf="!hide">
+            <svg width="20" height="16" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.99876 11.799C10.6351 11.799 11.1806 11.6104 11.6351 11.2333L7.81694 7.27344C7.4533 7.74485 7.27148 8.31054 7.27148 8.97051C7.27148 10.5733 8.4533 11.799 9.99876 11.799Z"
+                fill="#C7BEBE"/>
+              <path
+                d="M8.72656 4.44502C9.0902 4.35074 9.54474 4.25646 9.99929 4.25646C12.5447 4.25646 14.5447 6.33066 14.5447 8.97055C14.5447 9.53624 14.4538 10.0077 14.272 10.4791L16.9993 13.4018C18.272 12.2704 19.3629 10.7619 19.9993 9.06483C18.4538 4.82215 14.5447 1.89941 9.99929 1.89941C8.90838 1.89941 7.81747 2.08798 6.72656 2.37082L8.72656 4.44502Z"
+                fill="#C7BEBE"/>
+              <path d="M10.2715 6.1416L12.726 8.78149C12.6351 7.36727 11.5442 6.33017 10.2715 6.1416Z" fill="#999999"/>
+              <path
+                d="M12.9091 12.5535C12.0909 13.2134 11.0909 13.6848 10 13.6848C7.45455 13.6848 5.45455 11.6106 5.45455 8.97074C5.45455 7.83936 5.90909 6.70798 6.54545 5.95373L4.27273 3.59668C2.36364 4.82234 0.818182 6.70798 0 8.97074C1.54545 13.1191 5.45455 16.0419 10 16.0419C11.8182 16.0419 13.5455 15.5705 15.0909 14.7219L12.9091 12.5535Z"
+                fill="#C7BEBE"/>
+              <path d="M3.07114 0.000195168L1.91406 1.2002L17.1489 17.0002L18.3059 15.8002L3.07114 0.000195168Z"
+                    fill="#C7BEBE"/>
+            </svg>
+          </mat-icon>
+        </button>
+        <mat-error>Введіть пароль</mat-error>
+      </mat-form-field>2
+      <p class="forgot pointer">Забули пароль?</p>
+    </div>
+  </form>
+  <div class="container-button">
+    <button class="sign-in pointer">Увійти</button>
+    <p (click)="open('up')">У вас нема аккаунту? <span>Зареєструватись</span></p>
+  </div>
+</div>

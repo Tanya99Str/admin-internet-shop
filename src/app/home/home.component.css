@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  display: block;
+}
+
+.header {
+  width: 100%;
+}
+
+.container-content {
+  width: 100%;
+  display: block;
+  padding: 0 5%;
+}
+
+.container-footer {
+  width: 100%;
+}
+
