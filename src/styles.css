@@ -7,6 +7,7 @@ html, body {
 }
 
 body {
+  background: #F3F3F3;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -45,4 +46,8 @@ button:focus {
 
 .transform180deg {
   transform: rotate(180deg);
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: .5375em 0 !important;
 }

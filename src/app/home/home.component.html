@@ -3,9 +3,82 @@
     <app-header></app-header>
   </div>
   <div class="container-content">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="container-footer">
-    <app-footer></app-footer>
+    <!--<div class="none">-->
+    <!--<img src="../../assets/images/Group-2.png" alt="" style="width: 14vw;">-->
+    <!--<button class="pointer">Новий товар</button>-->
+    <!--</div>-->
+    <div class="content-header">
+      <h1>Про товар</h1>
+    </div>
+    <form class="content-form" [formGroup]="aboutFormGroup">
+      <div class="form-left">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Назва</mat-label>
+          <input matInput formControlName="name" type="text">
+          <mat-error *ngIf="aboutFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Опис</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error *ngIf="aboutFormGroup.get('description').hasError('required')">Введіть опис</mat-error>
+        </mat-form-field>
+        <div class="select-color">
+          <h2>Кольори</h2>
+          <div class="colors">
+            <div class="one-color">
+              <mat-checkbox>
+                <div class="color"></div>
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+        <div class="select-color">
+          <h2>Розміри</h2>
+          <div class="sizes">
+            <div class="one-size">
+              <mat-checkbox>
+                <span>XXS</span>
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-right">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Матеріал</mat-label>
+          <input matInput formControlName="material" type="text">
+          <mat-error *ngIf="aboutFormGroup.get('material').hasError('required')">Вкажіть матеріал</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Колекція</mat-label>
+          <input matInput formControlName="collection" type="text">
+          <mat-error *ngIf="aboutFormGroup.get('collection').hasError('required')">Вкажіть колекцію</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Склад</mat-label>
+          <input matInput formControlName="composition" type="text">
+          <mat-error *ngIf="aboutFormGroup.get('composition').hasError('required')">Вкажіть склад</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Категорія</mat-label>
+          <mat-select formControlName="category">
+            <mat-option></mat-option>
+          </mat-select>
+          <mat-error *ngIf="aboutFormGroup.get('category').hasError('required')">Вкажіть колекцію</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="photos">
+      <div class="new-photo photo pointer">
+        <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
+      <div class="photo"></div>
+    </div>
+    <div class="save">
+      <button class="pointer">Зберегти</button>
+    </div>
   </div>
 </div>

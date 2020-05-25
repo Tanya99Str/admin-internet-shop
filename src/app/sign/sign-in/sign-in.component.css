@@ -1,98 +1,65 @@
-.container {
-  width: 100%;
-  height: 100vh;
-  padding: 2vh 4vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+p, span, h1, h2 {
+  margin: 0;
 }
 
-.header {
-  width: 100%;
-  display: block;
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/images/makeup-cosmetic-beauty-products-pink-background_23-2148113421.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.sign {
+  height: 75vh;
+  width: 45%;
+  background: #ffffff;
+  position: absolute;
+  left: 5vw;
+  top: 12.5vh;
+  padding: 6vh 4vw;
   text-align: center;
 }
 
 h1 {
-  font-family: Satisfy;
-  letter-spacing: 0.05em;
-  color: #D7728B;
-  font-size: 5vh;
-  margin: auto;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 4.7vh;
+  font-feature-settings: 'tnum' on, 'onum' on;
+  color: #E8A89C;
 }
 
-.detail {
-  color: #737171;
-  font-size: 2.2vh;
-  font-weight: 200;
-  width: 60%;
-  margin: auto;
-  margin-top: 2vh;
+h1 span {
+  font-family: Satisfy, sans-serif;
+  font-style: normal;
 }
 
 form {
-  width: 60%;
-  margin-top: 5vh;
-}
-
-.one-elem {
   width: 100%;
-  position: relative;
+  display: block;
+  margin-top: 15vh;
 }
 
-.forgot {
-  color: #D7728B;
-  font-weight: 400;
-  font-size: .8vw;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.forgot:hover {
-  color: #B5697C;
-}
-
-.container-button {
-  width: 60%;
-  margin-top: 17vh;
-}
-
-.container-button button {
+.in {
   width: 100%;
-  padding: 1.7vh 2vw;
-  background: #F3A9CF;
-  border: 1px solid #F3A9CF;
+  margin-top: 10vh;
+}
+
+.in button {
+  width: 100%;
+  background: #D8978D;
+  border: 1px solid #D8978D;
   color: #ffffff;
-  font-size: .9vw;
-  text-transform: uppercase;
-}
-
-.container-button button:hover {
-  background: #D36BA0;
-  border: 1px solid #D36BA0;
-}
-
-.container-button p {
-  color: #737171;
-  font-weight: normal;
-  font-size: 1vw;
-  margin: auto;
-  margin-top: 5vh;
-  text-align: center;
-}
-
-.container-button span  {
-  color: #D7728B;
-  cursor: pointer;
+  font-style: normal;
   font-weight: bold;
+  font-size: 2vh;
+  text-transform: uppercase;
+  padding: 1.2vh 2vw;
 }
 
-.container-button span:hover {
-  color: #B5697C;
-}
-
-button:hover svg * {
-  fill: #9E9D9D!important;
+.in button:hover {
+  color: #D8978D;
+  background: #ffffff;
 }

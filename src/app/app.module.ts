@@ -12,26 +12,16 @@ import {GlobalImportModule} from './shared/global-import.module';
 import {MaterialModule} from './shared/material.module';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { SignUpComponent } from './sign/sign-up/sign-up.component';
-import {HeaderComponent} from './home/source/header/header.component';
-import { CatalogComponent } from './home/catalog/catalog.component';
-import { CatalogOneComponent } from './home/catalog/catalog-one/catalog-one.component';
-import { FooterComponent } from './home/source/footer/footer.component';
-import { ProfileComponent } from './home/source/profile/profile.component';
+import { HeaderComponent } from './header/header.component';
 // import {homeRoutes} from './home/home.module';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent, children: [
-      {path: '', redirectTo: 'catalog', pathMatch: 'full'},
-      {path: 'catalog', component: CatalogComponent},
-      {path: 'profile', component: ProfileComponent}
-    ]},
-  {
-    path: 'sign', component: SignComponent, children: [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'sign', component: SignComponent, children: [
+      {path: '', redirectTo: 'in', pathMatch: 'full'},
       {path: 'in', component: SignInComponent},
-      {path: 'up', component: SignUpComponent}
-    ]
-  },
+    ]},
 ];
 
 
@@ -41,12 +31,7 @@ const routes: Routes = [
     HomeComponent,
     SignComponent,
     SignInComponent,
-    SignUpComponent,
     HeaderComponent,
-    CatalogComponent,
-    CatalogOneComponent,
-    FooterComponent,
-    ProfileComponent
   ],
   imports: [
     BrowserModule,
