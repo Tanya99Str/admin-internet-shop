@@ -2,7 +2,7 @@ import {ISize} from './size.model';
 import {ICategory} from './category.model';
 import {ISubCategory} from './sub-category.model';
 import {IColour} from './colour.model';
-import {ICollection} from './collection.model';
+import {Collection} from './collection.model';
 
 export class ProductModel {
   id?: number;
@@ -26,7 +26,7 @@ export class ProductModel {
   subCategories?: ISubCategory[];
   colours?: IColour[];
   suggestedProducts?: ProductModel[];
-  collection?: ICollection;
+  collection?: Collection;
   suggestedFors?: ProductModel[];
 }
 
