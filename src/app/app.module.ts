@@ -13,16 +13,21 @@ import {MaterialModule} from './shared/material.module';
 import {MatInputModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HeaderComponent } from './header/header.component';
-import {NgxWebstorageModule} from 'ngx-webstorage';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './shared/service/interceptor/auth.interceptor';
 // import {homeRoutes} from './home/home.module';
 import { HttpClient } from '@angular/common/http';
-import {AuthExpiredInterceptor} from './shared/service/interceptor/auth.expired.interceptor';
+import { ProductsComponent } from './home/products/products.component';
+import { NewProductComponent } from './home/new-product/new-product.component';
+import { OneProductComponent } from './home/products/one-product/one-product.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, children: [
+      {path: '', redirectTo: 'products', pathMatch: 'full'},
+      {path: 'products', component: ProductsComponent},
+      {path: 'new-product', component: NewProductComponent},
+    ]},
   {path: 'sign', component: SignComponent, children: [
       {path: '', redirectTo: 'in', pathMatch: 'full'},
       {path: 'in', component: SignInComponent},
@@ -37,6 +42,9 @@ const routes: Routes = [
     SignComponent,
     SignInComponent,
     HeaderComponent,
+    ProductsComponent,
+    NewProductComponent,
+    OneProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,6 @@ const routes: Routes = [
     MaterialModule,
     GlobalImportModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot({ prefix: 'jhi', separator: '-' }),
   ],
   providers: [
     {
@@ -55,11 +62,6 @@ const routes: Routes = [
       useClass: AuthInterceptor,
       multi: true
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthExpiredInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent],
   schemas: [

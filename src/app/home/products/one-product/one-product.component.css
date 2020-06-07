@@ -1,0 +1,76 @@
+.container {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  /*height: 100%;*/
+  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.photo-name, .price-buttons {
+  width: 100%;
+  display: block;
+}
+
+.photo {
+  width: 100%;
+  height: 55vh;
+  /*background: #F3A9CF;*/
+  border-radius: 10px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo svg {
+  width: 50%!important;
+}
+
+.name {
+  color: #776771;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5vw;
+  text-align: center;
+  margin: 1vh 0;
+}
+
+.price-buttons {
+  margin-top: 2vh;
+  padding: 1vh 1vw;
+  padding-bottom: 2vh;
+}
+
+.price {
+  color: #4F4F4F;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2vw;
+  text-align: right;
+}
+
+.price-buttons button {
+  width: 100% !important;
+  color: #FFFFFF;
+  margin-top: 1vh;
+  border: none !important;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.2vw;
+  padding: 1.4vh 1vw;
+}
+
+.details {
+  background: #FB9CB4!important;
+}
+
+.details:hover {
+  background: #FF007B !important;
+}

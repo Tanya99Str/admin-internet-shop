@@ -1,0 +1,18 @@
+.catalog {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  /*padding: 2vh 0;*/
+}
+
+.one-elem {
+  width: 30%;
+  margin-right: 5%;
+  margin-bottom: 6vh;
+}
+
+.one-elem:nth-child(3n) {
+  margin-right: 0 !important;
+}

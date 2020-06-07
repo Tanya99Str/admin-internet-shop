@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="photo-name">
+    <div class="photo" [ngStyle]="{'background-image':'url(data:'+(product.image1ContentType)+';base64,' + product.image1 + ')'}" *ngIf="product.image1"></div>
+    <div class="photo" *ngIf="!product.image1" style="background: #E6E6E6;">
+      <svg width="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M61.5821 8.31034V61.8159H7.84388V8.31034H61.5821ZM61.5821 0.666687H7.84388C3.62159 0.666687 0.166992 4.10633 0.166992 8.31034V61.8159C0.166992 66.02 3.62159 69.4596 7.84388 69.4596H61.5821C65.8044 69.4596 69.259 66.02 69.259 61.8159V8.31034C69.259 4.10633 65.8044 0.666687 61.5821 0.666687ZM42.9273 34.5281L31.4119 49.3186L23.1977 39.42L11.6823 54.1723H57.7437L42.9273 34.5281Z" fill="#A7A6A6" fill-opacity="0.68"/>
+        <ellipse cx="21.9845" cy="22.3909" rx="6.0607" ry="6.03447" fill="#A7A6A6" fill-opacity="0.68"/>
+      </svg>
+    </div>
+    <p class="name pointer">{{product.name}}</p>
+  </div>
+  <div class="price-buttons">
+    <p class="price">Ціна: {{product.price}}₴</p>
+<!--    <button class="pointer details">Деталі</button>-->
+    <button class="pointer details" (click)="delete()">Видалити</button>
+  </div>
+</div>

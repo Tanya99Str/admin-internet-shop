@@ -1,4 +1,5 @@
 import {IProduct} from './product.model';
+import {ISubCategory} from './sub-category.model';
 
 export interface ICategory {
   id?: number;

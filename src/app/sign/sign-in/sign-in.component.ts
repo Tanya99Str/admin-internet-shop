@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {LoginService} from '../../shared/service/backend/login.service';
 import {Login} from '../../shared/service/models/login.model';
 
 @Component({
@@ -15,7 +14,7 @@ export class SignInComponent implements OnInit {
   hide = true;
   logUser: Login = new Login();
 
-  constructor(private _formBuilder: FormBuilder, public router: Router, private loginService: LoginService) {
+  constructor(private _formBuilder: FormBuilder, public router: Router) {
   }
 
   ngOnInit() {
@@ -29,16 +28,16 @@ export class SignInComponent implements OnInit {
   open(u: string) {
     this.router.navigate(['sign', u]);
   }
-
-  login(): void {
-    this.logUser.username = this.signInFormGroup.get('username').value;
-    this.logUser.password = this.signInFormGroup.get('password').value;
-    this.logUser.rememberMe = false;
-    this.loginService.login(this.logUser).subscribe(next => {
-      this.router.navigate(['']);
-    }, error => {
-      console.error(error);
-    });
-  }
+  //
+  // login(): void {
+  //   this.logUser.username = this.signInFormGroup.get('username').value;
+  //   this.logUser.password = this.signInFormGroup.get('password').value;
+  //   this.logUser.rememberMe = false;
+  //   this.loginService.login(this.logUser).subscribe(next => {
+  //     this.router.navigate(['']);
+  //   }, error => {
+  //     console.error(error);
+  //   });
+  // }
 
 }
