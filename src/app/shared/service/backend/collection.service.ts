@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {ICollection} from '../models/collection.model';
+import {Collection} from '../models/collection.model';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {SERVER_API_URL} from '../../config/url';
 import {Observable} from 'rxjs';
 import {createRequestOption, Search} from '../../utils/request-util';
 
-type EntityResponseType = HttpResponse<ICollection>;
-type EntityArrayResponseType = HttpResponse<ICollection[]>;
+type EntityResponseType = HttpResponse<Collection>;
+type EntityArrayResponseType = HttpResponse<Collection[]>;
 
 @Injectable({ providedIn: 'root' })
 export class CollectionService {
@@ -15,21 +15,21 @@ export class CollectionService {
 
   constructor(protected http: HttpClient) {}
 
-  create(collection: ICollection): Observable<EntityResponseType> {
-    return this.http.post<ICollection>(this.resourceUrl, collection, { observe: 'response' });
+  create(collection: Collection): Observable<EntityResponseType> {
+    return this.http.post<Collection>(this.resourceUrl, collection, { observe: 'response' });
   }
 
-  update(collection: ICollection): Observable<EntityResponseType> {
-    return this.http.put<ICollection>(this.resourceUrl, collection, { observe: 'response' });
+  update(collection: Collection): Observable<EntityResponseType> {
+    return this.http.put<Collection>(this.resourceUrl, collection, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<ICollection>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http.get<Collection>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ICollection[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<Collection[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -38,6 +38,6 @@ export class CollectionService {
 
   search(req: Search): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ICollection[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    return this.http.get<Collection[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
 }

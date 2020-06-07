@@ -20,6 +20,8 @@ import { HttpClient } from '@angular/common/http';
 import { ProductsComponent } from './home/products/products.component';
 import { NewProductComponent } from './home/new-product/new-product.component';
 import { OneProductComponent } from './home/products/one-product/one-product.component';
+import { CollectionsComponent } from './home/collections/collections.component';
+import { NewCollectionComponent } from './home/new-collection/new-collection.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -27,6 +29,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'products', pathMatch: 'full'},
       {path: 'products', component: ProductsComponent},
       {path: 'new-product', component: NewProductComponent},
+      {path: 'collections', component: CollectionsComponent},
+      {path: 'new-collection', component: NewCollectionComponent},
     ]},
   {path: 'sign', component: SignComponent, children: [
       {path: '', redirectTo: 'in', pathMatch: 'full'},
@@ -45,6 +49,8 @@ const routes: Routes = [
     ProductsComponent,
     NewProductComponent,
     OneProductComponent,
+    CollectionsComponent,
+    NewCollectionComponent,
   ],
   imports: [
     BrowserModule,

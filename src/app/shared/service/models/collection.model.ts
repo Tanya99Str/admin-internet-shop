@@ -1,11 +1,18 @@
-import {IProduct} from './product.model';
+import {ProductModel} from './product.model';
 
-export interface ICollection {
+
+export class Collection {
   id?: number;
   name?: string;
-  products?: IProduct[];
+  products?: ProductModel[];
 }
 
-export class Collection implements ICollection {
-  constructor(public id?: number, public name?: string, public products?: IProduct[]) {}
-}
+// export interface ICollection {
+//   id?: number;
+//   name?: string;
+//   products?: ProductModel[];
+// }
+//
+// export class Collection implements ICollection {
+//   constructor(public id?: number, public name?: string, public products?: ProductModel[]) {}
+// }

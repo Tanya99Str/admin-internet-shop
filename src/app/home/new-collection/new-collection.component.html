@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="content-header">
+    <h1>Додати колекцію</h1>
+  </div>
+  <div class="content">
+    <form [formGroup]="newCollectionFormGroup">
+      <mat-form-field style="width: 60%;">
+        <mat-label>Назва</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="newCollectionFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+      </mat-form-field>
+    </form>
+    <div class="buttons">
+      <button class="pointer cancel" (click)="cancel()">Скасувати</button>
+      <button class="pointer save" (click)="save()">Зберегти</button>
+    </div>
+  </div>
+</div>

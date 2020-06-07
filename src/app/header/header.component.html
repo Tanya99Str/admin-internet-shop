@@ -1,21 +1,21 @@
 <div class="container">
   <div class="left">
   <img src="../../assets/images/logo.png" alt="">
-    <button mat-button [matMenuTriggerFor]="menu">Переглянути</button>
+    <button mat-button [matMenuTriggerFor]="menu" style="color: #757575">Переглянути</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="products">Товар</button>
-      <button mat-menu-item>Колекції</button>
+      <button mat-menu-item routerLink="collections">Колекції</button>
       <button mat-menu-item>Категорії</button>
       <button mat-menu-item>Підкатегорії</button>
       <button mat-menu-item>Розміри</button>
     </mat-menu>
-    <button mat-button [matMenuTriggerFor]="menuAddNew">Додати</button>
+    <button mat-button [matMenuTriggerFor]="menuAddNew" style="color: #757575">Додати</button>
     <mat-menu #menuAddNew="matMenu">
       <button mat-menu-item routerLink="new-product">Товар</button>
-      <button mat-menu-item>Колекції</button>
-      <button mat-menu-item>Категорії</button>
-      <button mat-menu-item>Підкатегорії</button>
-      <button mat-menu-item>Розміри</button>
+      <button mat-menu-item routerLink="new-collection">Колекцію</button>
+      <button mat-menu-item>Категорію</button>
+      <button mat-menu-item>Підкатегорію</button>
+      <button mat-menu-item>Розмір</button>
     </mat-menu>
   </div>
   <button class="pointer">

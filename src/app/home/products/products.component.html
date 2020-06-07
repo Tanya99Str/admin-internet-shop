@@ -1,13 +1,9 @@
 <div class="catalog">
+  <div class="none" *ngIf="products?.length==0">
+  <img src="../../assets/images/Group-2.png" alt="" style="width: 14vw;">
+  <button class="pointer" routerLink="new-product">Новий товар</button>
+  </div>
   <div class="one-elem" *ngFor="let one of products;trackBy: trackId">
     <app-one-product [product]="one"></app-one-product>
-<!--    <div class="photo-name">-->
-<!--      <div class="photo"></div>-->
-<!--      <p class="name pointer">{{one.name}}</p>-->
-<!--    </div>-->
-<!--    <div class="price-button">-->
-<!--      <p class="price">Ціна: {{one.price}}₴</p>-->
-<!--      <button class="pointer">Купити</button>-->
-<!--    </div>-->
   </div>
 </div>
