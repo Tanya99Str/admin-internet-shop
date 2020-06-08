@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="content-header">
+    <h1>Додати колір</h1>
+  </div>
+  <div class="content">
+    <form [formGroup]="newColorFormGroup">
+      <mat-form-field style="width: 60%;">
+        <mat-label>Назва</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="newColorFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+      </mat-form-field>
+    </form>
+    <div class="attention">
+      <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.9844 12.0156V7.98438H11.0156V12.0156H12.9844ZM12.9844 16V13.9844H11.0156V16H12.9844ZM0.984375 19L12 0.015625L23.0156 19H0.984375Z" fill="red"/>
+      </svg>
+      <span>Назву кольорів слід вводити англійською. Палітра кольорів представлена нище.</span>
+    </div>
+    <div class="buttons">
+      <button class="pointer cancel" (click)="cancel()">Скасувати</button>
+      <button class="pointer save" (click)="save()">Зберегти</button>
+    </div>
+  </div>
+  <div class="list-colors">
+    <div class="one-color" style="background: oldlace;"><span class="color-black">oldlace</span></div>
+    <div class="one-color" style="background: wheat;"><span class="color-black">wheat</span></div>
+    <div class="one-color" style="background: orange;"><span class="color-black">orange</span></div>
+    <div class="one-color" style="background: moccasin;"><span class="color-black">moccasin</span></div>
+    <div class="one-color" style="background: papayawhip;"><span class="color-black">papayawhip</span></div>
+    <div class="one-color" style="background: navajowhite;"><span class="color-black">navajowhite</span></div>
+    <div class="one-color" style="background: tan;"><span class="color-black">tan</span></div>
+    <div class="one-color" style="background: bisque;"><span class="color-black">bisque</span></div>
+    <div class="one-color" style="background: burlywood;"><span class="color-black">burlywood</span></div>
+    <div class="one-color" style="background: chocolate;"><span class="color-black">chocolate</span></div>
+    <div class="one-color" style="background: saddlebrown;"><span class="color-white">saddlebrown</span></div>
+    <div class="one-color" style="background: lightsalmon;"><span class="color-black">lightsalmon</span></div>
+    <div class="one-color" style="background: red;"><span class="color-black">red</span></div>
+    <div class="one-color" style="background: lightcoral;"><span class="color-black">lightcoral</span></div>
+    <div class="one-color" style="background: rosybrown;"><span class="color-black">rosybrown</span></div>
+    <div class="one-color" style="background: firebrick;"><span class="color-white">firebrick</span></div>
+    <div class="one-color" style="background: brown;"><span class="color-white">brown</span></div>
+    <div class="one-color" style="background: orangered;"><span class="color-black">orangered</span></div>
+    <div class="one-color" style="background: indianred;"><span class="color-black">indianred</span></div>
+    <div class="one-color" style="background: darkred;"><span class="color-white">darkred</span></div>
+    <div class="one-color" style="background: turquoise;"><span class="color-black">turquoise</span></div>
+    <div class="one-color" style="background: aquamarine;"><span class="color-black">aquamarine</span></div>
+    <div class="one-color" style="background: mediumaquamarine;"><span class="color-black">mediumaquamarine</span></div>
+    <div class="one-color" style="background: mediumspringgreen;"><span class="color-black">mediumspringgreen</span></div>
+    <div class="one-color" style="background: mintcream;"><span class="color-black">mintcream</span></div>
+    <div class="one-color" style="background: mediumseagreen;"><span class="color-black">mediumseagreen</span></div>
+    <div class="one-color" style="background: seagreen;"><span class="color-white">seagreen</span></div>
+    <div class="one-color" style="background: limegreen;"><span class="color-black">limegreen</span></div>
+    <div class="one-color" style="background: green;"><span class="color-white">green</span></div>
+    <div class="one-color" style="background: darkgreen;"><span class="color-white">darkgreen</span></div>
+    <div class="one-color" style="background: lime;"><span class="color-black">lime</span></div>
+    <div class="one-color" style="background: darkolivegreen;"><span class="color-white">darkolivegreen</span></div>
+    <div class="one-color" style="background: lightyellow;"><span class="color-black">lightyellow</span></div>
+    <div class="one-color" style="background: yellow;"><span class="color-black">yellow</span></div>
+    <div class="one-color" style="background: olive;"><span class="color-white">olive</span></div>
+    <div class="one-color" style="background: darkkhaki;"><span class="color-black">darkkhaki</span></div>
+    <div class="one-color" style="background: khaki;"><span class="color-black">khaki</span></div>
+    <div class="one-color" style="background: gold;"><span class="color-black">gold</span></div>
+    <div class="one-color" style="background: goldenrod;"><span class="color-black">goldenrod</span></div>
+    <div class="one-color" style="background: darkgoldenrod;"><span class="color-white">darkgoldenrod</span></div>
+    <div class="one-color" style="background: slateblue;"><span class="color-black">slateblue</span></div>
+    <div class="one-color" style="background: lavender;"><span class="color-black">lavender</span></div>
+    <div class="one-color" style="background: midnightblue;"><span class="color-white">midnightblue</span></div>
+    <div class="one-color" style="background: blue;"><span class="color-black">blue</span></div>
+    <div class="one-color" style="background: mediumblue;"><span class="color-white">mediumblue</span></div>
+    <div class="one-color" style="background: darkblue;"><span class="color-white">darkblue</span></div>
+    <div class="one-color" style="background: navy;"><span class="color-white">navy</span></div>
+    <div class="one-color" style="background: royalblue;"><span class="color-black">royalblue</span></div>
+    <div class="one-color" style="background: cornflowerblue;"><span class="color-black">cornflowerblue</span></div>
+    <div class="one-color" style="background: lightsteelblue;"><span class="color-black">lightsteelblue</span></div>
+    <div class="one-color" style="background: lightslategrey;"><span class="color-black">lightslategrey</span></div>
+    <div class="one-color" style="background: dodgerblue;"><span class="color-black">dodgerblue</span></div>
+    <div class="one-color" style="background: steelblue;"><span class="color-black">steelblue</span></div>
+    <div class="one-color" style="background: lightskyblue;"><span class="color-black">lightskyblue</span></div>
+    <div class="one-color" style="background: skyblue;"><span class="color-black">skyblue</span></div>
+    <div class="one-color" style="background: deepskyblue;"><span class="color-black">deepskyblue</span></div>
+    <div class="one-color" style="background: cadetblue;"><span class="color-black">cadetblue</span></div>
+    <div class="one-color" style="background: darkslategray;"><span class="color-white">darkslategray</span></div>
+    <div class="one-color" style="background: cyan;"><span class="color-black">cyan</span></div>
+    <div class="one-color" style="background: teal;"><span class="color-white">teal</span></div>
+    <div class="one-color" style="background: white;"><span class="color-black">white</span></div>
+    <div class="one-color" style="background: lightgray;"><span class="color-black">lightgray</span></div>
+    <div class="one-color" style="background: silver;"><span class="color-black">silver</span></div>
+    <div class="one-color" style="background: grey;"><span class="color-black">grey</span></div>
+    <div class="one-color" style="background: dimgrey;"><span class="color-white">dimgrey</span></div>
+    <div class="one-color" style="background: black;"><span class="color-white">black</span></div>
+    <div class="one-color" style="background: lightpink;"><span class="color-black">lightpink</span></div>
+    <div class="one-color" style="background: pink;"><span class="color-black">pink</span></div>
+    <div class="one-color" style="background: crimson;"><span class="color-black">crimson</span></div>
+    <div class="one-color" style="background: palevioletred;"><span class="color-black">palevioletred</span></div>
+    <div class="one-color" style="background: hotpink;"><span class="color-black">hotpink</span></div>
+    <div class="one-color" style="background: deeppink;"><span class="color-black">deeppink</span></div>
+    <div class="one-color" style="background: mediumvioletred;"><span class="color-white">mediumvioletred</span></div>
+    <div class="one-color" style="background: orchid;"><span class="color-black">orchid</span></div>
+    <div class="one-color" style="background: violet;"><span class="color-black">violet</span></div>
+    <div class="one-color" style="background: plum;"><span class="color-black">plum</span></div>
+    <div class="one-color" style="background: purple;"><span class="color-white">purple</span></div>
+    <div class="one-color" style="background: mediumorchid;"><span class="color-black">mediumorchid</span></div>
+    <div class="one-color" style="background: darkviolet;"><span class="color-white">darkviolet</span></div>
+    <div class="one-color" style="background: darkorchid;"><span class="color-black">darkorchid</span></div>
+    <div class="one-color" style="background: indigo;"><span class="color-white">indigo</span></div>
+    <div class="one-color" style="background: blueviolet;"><span class="color-black">blueviolet</span></div>
+    <div class="one-color" style="background: rebeccapurple;"><span class="color-white">rebeccapurple</span></div>
+    <div class="one-color" style="background: mediumpurple;"><span class="color-black">mediumpurple</span></div>
+    <div class="one-color" style="background: mediumslateblue;"><span class="color-black">mediumslateblue</span></div>
+  </div>
+</div>

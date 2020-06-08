@@ -1,23 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {ColourService} from '../../shared/service/backend/colors.service';
+import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ColourModel} from '../../shared/service/models/colour.model';
 import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {ColourService} from '../../shared/service/backend/colors.service';
 import {Collection} from '../../shared/service/models/collection.model';
 import {HttpResponse} from '@angular/common/http';
-import {CollectionService} from '../../shared/service/backend/collection.service';
 
 @Component({
-  selector: 'app-collections',
-  templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.css']
+  selector: 'app-colors',
+  templateUrl: './colors.component.html',
+  styleUrls: ['./colors.component.css']
 })
-export class CollectionsComponent implements OnInit {
+export class ColorsComponent implements OnInit {
 
   canEdit: boolean = false;
-  collections: Collection[] = [];
 
-  constructor(private _collectionService: CollectionService,
+  newColorFormGroup: FormGroup;
+  colors: ColourModel[] = [];
+
+  constructor(private _colourService: ColourService,
               private _snackBar: MatSnackBar,
               private  activatedRoute: ActivatedRoute,
               private _formBuilder: FormBuilder,
@@ -25,11 +27,8 @@ export class CollectionsComponent implements OnInit {
     this.init();
   }
 
-  ngOnInit() {
-  }
-
   update(one: Collection) {
-    this._collectionService.update(one).subscribe(next => {
+    this._colourService.update(one).subscribe(next => {
       this.info('Дані успішно оновлено.');
       this.canEdit = !this.canEdit;
       this.init();
@@ -39,8 +38,11 @@ export class CollectionsComponent implements OnInit {
     });
   }
 
-  delete(one: Collection) {
-    this._collectionService.delete(one.id).subscribe(next => {
+  ngOnInit() {
+  }
+
+  delete(one: ColourModel) {
+    this._colourService.delete(one.id).subscribe(next => {
       this.info('Дані успішно видалено.');
       this.init();
     }, error => {
@@ -50,7 +52,7 @@ export class CollectionsComponent implements OnInit {
   }
 
   init() {
-    this._collectionService.query().subscribe((res: HttpResponse<Collection[]>) => (this.collections = res.body || []));
+    this._colourService.query().subscribe((res: HttpResponse<Collection[]>) => (this.colors = res.body || []));
   }
 
   info(message: string) {

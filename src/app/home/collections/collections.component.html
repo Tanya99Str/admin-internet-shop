@@ -6,7 +6,7 @@
     <div class="one-elem" *ngFor="let one of collections">
       <mat-form-field style="width: 50%;">
         <mat-label>Назва</mat-label>
-        <input matInput type="text" [disabled]="!canEdit"[(ngModel)]="one.name" [ngModelOptions]="{standalone: true}">
+        <input matInput type="text" [disabled]="!canEdit" [(ngModel)]="one.name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
       <div class="buttons">
         <button class="save pointer" *ngIf="canEdit" (click)="update(one)">Зберегти</button>

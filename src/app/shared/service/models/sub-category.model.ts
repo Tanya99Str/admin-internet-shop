@@ -1,13 +1,13 @@
 import {ProductModel} from './product.model';
-import {ICategory} from './category.model';
+import {CategoryModel} from './category.model';
 
 export interface ISubCategory {
   id?: number;
   name?: string;
-  category?: ICategory;
+  category?: CategoryModel;
   products?: ProductModel[];
 }
 
 export class SubCategory implements ISubCategory {
-  constructor(public id?: number, public name?: string, public category?: ICategory, public products?: ProductModel[]) {}
+  constructor(public id?: number, public name?: string, public category?: CategoryModel, public products?: ProductModel[]) {}
 }

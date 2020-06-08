@@ -31,6 +31,22 @@ form {
   width: 100%;
 }
 
+.attention {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1vh;
+}
+
+.attention span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.9vh;
+  color: #828282;
+  margin-left: .6vw;
+}
+
 .buttons {
   width: 100%;
   display: flex;
@@ -67,4 +83,34 @@ form {
 .save:hover {
   background: #ffffff;
   color: rgba(250, 93, 120, 0.93) !important;
+}
+
+.list-colors {
+  width: 100%;
+  margin-top: 2vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.one-color {
+  width: 20%;
+  padding: 1vh 1vw;
+  border: .2px solid #828282;
+}
+
+.one-color span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.9vh;
+  margin-left: .6vw;
+}
+
+.color-white {
+  color: #ffffff;
+}
+
+.color-black {
+  color: black;
 }

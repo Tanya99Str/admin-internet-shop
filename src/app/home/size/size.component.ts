@@ -1,23 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {ColourService} from '../../shared/service/backend/colors.service';
+import { Component, OnInit } from '@angular/core';
+import {SizeModel} from '../../shared/service/models/size.model';
+import {HttpResponse} from '@angular/common/http';
+import {Collection} from '../../shared/service/models/collection.model';
+import {CategoryService} from '../../shared/service/backend/category.service';
 import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Collection} from '../../shared/service/models/collection.model';
-import {HttpResponse} from '@angular/common/http';
-import {CollectionService} from '../../shared/service/backend/collection.service';
+import {FormBuilder} from '@angular/forms';
+import {SizeService} from '../../shared/service/backend/size.service';
 
 @Component({
-  selector: 'app-collections',
-  templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.css']
+  selector: 'app-size',
+  templateUrl: './size.component.html',
+  styleUrls: ['./size.component.css']
 })
-export class CollectionsComponent implements OnInit {
+export class SizeComponent implements OnInit {
 
   canEdit: boolean = false;
-  collections: Collection[] = [];
+  size: SizeModel[] = [];
 
-  constructor(private _collectionService: CollectionService,
+  constructor(private _sizeService: SizeService,
               private _snackBar: MatSnackBar,
               private  activatedRoute: ActivatedRoute,
               private _formBuilder: FormBuilder,
@@ -25,11 +26,8 @@ export class CollectionsComponent implements OnInit {
     this.init();
   }
 
-  ngOnInit() {
-  }
-
-  update(one: Collection) {
-    this._collectionService.update(one).subscribe(next => {
+  update(one: SizeModel) {
+    this._sizeService.update(one).subscribe(next => {
       this.info('Дані успішно оновлено.');
       this.canEdit = !this.canEdit;
       this.init();
@@ -39,8 +37,8 @@ export class CollectionsComponent implements OnInit {
     });
   }
 
-  delete(one: Collection) {
-    this._collectionService.delete(one.id).subscribe(next => {
+  delete(one: SizeModel) {
+    this._sizeService.delete(one.id).subscribe(next => {
       this.info('Дані успішно видалено.');
       this.init();
     }, error => {
@@ -50,7 +48,7 @@ export class CollectionsComponent implements OnInit {
   }
 
   init() {
-    this._collectionService.query().subscribe((res: HttpResponse<Collection[]>) => (this.collections = res.body || []));
+    this._sizeService.query().subscribe((res: HttpResponse<Collection[]>) => (this.size = res.body || []));
   }
 
   info(message: string) {
@@ -62,6 +60,9 @@ export class CollectionsComponent implements OnInit {
       politeness: 'polite',
       direction: 'ltr'
     });
+  }
+
+  ngOnInit() {
   }
 
 }

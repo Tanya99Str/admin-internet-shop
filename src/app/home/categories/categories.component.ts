@@ -1,23 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {ColourService} from '../../shared/service/backend/colors.service';
+import { Component, OnInit } from '@angular/core';
+import {Collection} from '../../shared/service/models/collection.model';
+import {CategoryModel} from '../../shared/service/models/category.model';
+import {CollectionService} from '../../shared/service/backend/collection.service';
 import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Collection} from '../../shared/service/models/collection.model';
+import {FormBuilder} from '@angular/forms';
+import {CategoryService} from '../../shared/service/backend/category.service';
 import {HttpResponse} from '@angular/common/http';
-import {CollectionService} from '../../shared/service/backend/collection.service';
 
 @Component({
-  selector: 'app-collections',
-  templateUrl: './collections.component.html',
-  styleUrls: ['./collections.component.css']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css']
 })
-export class CollectionsComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
 
   canEdit: boolean = false;
-  collections: Collection[] = [];
+  category: CategoryModel[] = [];
 
-  constructor(private _collectionService: CollectionService,
+  constructor(private _categoryService: CategoryService,
               private _snackBar: MatSnackBar,
               private  activatedRoute: ActivatedRoute,
               private _formBuilder: FormBuilder,
@@ -25,11 +26,8 @@ export class CollectionsComponent implements OnInit {
     this.init();
   }
 
-  ngOnInit() {
-  }
-
-  update(one: Collection) {
-    this._collectionService.update(one).subscribe(next => {
+  update(one: CategoryModel) {
+    this._categoryService.update(one).subscribe(next => {
       this.info('Дані успішно оновлено.');
       this.canEdit = !this.canEdit;
       this.init();
@@ -39,8 +37,8 @@ export class CollectionsComponent implements OnInit {
     });
   }
 
-  delete(one: Collection) {
-    this._collectionService.delete(one.id).subscribe(next => {
+  delete(one: CategoryModel) {
+    this._categoryService.delete(one.id).subscribe(next => {
       this.info('Дані успішно видалено.');
       this.init();
     }, error => {
@@ -50,7 +48,7 @@ export class CollectionsComponent implements OnInit {
   }
 
   init() {
-    this._collectionService.query().subscribe((res: HttpResponse<Collection[]>) => (this.collections = res.body || []));
+    this._categoryService.query().subscribe((res: HttpResponse<Collection[]>) => (this.category = res.body || []));
   }
 
   info(message: string) {
@@ -62,6 +60,9 @@ export class CollectionsComponent implements OnInit {
       politeness: 'polite',
       direction: 'ltr'
     });
+  }
+
+  ngOnInit() {
   }
 
 }

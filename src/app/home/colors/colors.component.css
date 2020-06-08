@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  /*background: #F3F3F3;*/
   display: block;
 }
 
@@ -17,26 +18,42 @@ h1 {
   color: #828282;
 }
 
-.content {
+.list-collections {
   width: 100%;
-  display: block;
   background: #ffffff;
-  padding: 2vh 2vw;
+  padding: 0 2vw;
   /*border-radius: 10px;*/
+  display: block;
   margin-top: 2vh;
   border-radius: 0px 0px 10px 10px;
 }
 
-form {
+.one-elem {
   width: 100%;
+  padding: 1.4vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.one-color {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.color {
+  width: 2.4vh;
+  height: 2.4vh;
+  border-radius: 100%;
+  border: .1px solid black;
 }
 
 .buttons {
-  width: 100%;
+  /*width: 40%;*/
   display: flex;
   align-items: stretch;
-  justify-content: flex-end;
-  margin-top: 1.5vh;
 }
 
 .buttons button {
@@ -48,23 +65,34 @@ form {
   color: #FFFFFF;
 }
 
-.cancel {
-  background: rgba(115, 113, 113, 0.81);
-  border: 1px solid rgba(115, 113, 113, 0.81);
-  margin-right: 1vw;
-}
-
-.cancel:hover {
-  color: rgba(115, 113, 113, 0.81) !important;
-  background: #ffffff;
-}
-
 .save {
-  background: rgba(250, 93, 120, 0.93);
-  border: 1px solid rgba(250, 93, 120, 0.93);
+  background: #FB9CB4;
+  border: 1px solid #FB9CB4;
+  margin-right: 1vw;
 }
 
 .save:hover {
   background: #ffffff;
+  color: #FB9CB4!important;
+}
+
+.edit {
+  background: rgba(250, 93, 120, 0.93);
+  border: 1px solid rgba(250, 93, 120, 0.93);
+  margin-right: 1vw;
+}
+
+.edit:hover {
+  background: #ffffff;
   color: rgba(250, 93, 120, 0.93) !important;
+}
+
+.delete {
+  background: rgba(115, 113, 113, 0.81);
+  border: 1px solid rgba(115, 113, 113, 0.81);
+}
+
+.delete:hover {
+  color: rgba(115, 113, 113, 0.81) !important;
+  background: #ffffff;
 }

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="content-header">
+    <h1>Додати розмір</h1>
+  </div>
+  <div class="content">
+    <form [formGroup]="newSizeFormGroup">
+      <mat-form-field style="width: 60%;">
+        <mat-label>Назва</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="newSizeFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+      </mat-form-field>
+    </form>
+    <div class="buttons">
+      <button class="pointer cancel" (click)="cancel()">Скасувати</button>
+      <button class="pointer save" (click)="save()">Зберегти</button>
+    </div>
+  </div>
+</div>

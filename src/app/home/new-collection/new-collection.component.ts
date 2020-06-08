@@ -36,12 +36,11 @@ export class NewCollectionComponent implements OnInit {
     this.newCollection.name = this.newCollectionFormGroup.get('name').value;
     this._collectionService.create(this.newCollection).subscribe(next => {
       this.info('Дані успішно додано.');
-      this.router.navigateByUrl('/home/products');
+      this.router.navigateByUrl('/home/collections');
     }, error => {
       console.error(error);
       this.info('Виникла проблема. Спробуйте, будь ласка, пізніше.');
     });
-
   }
 
   cancel() {

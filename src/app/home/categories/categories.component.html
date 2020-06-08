@@ -1,0 +1,23 @@
+<div class="container-content">
+  <div class="content-header">
+    <h1>Категорії</h1>
+  </div>
+  <div class="list-collections">
+    <div class="one-elem" *ngFor="let one of category">
+      <mat-form-field style="width: 50%;">
+        <mat-label>Назва</mat-label>
+        <input matInput type="text" [disabled]="!canEdit" [(ngModel)]="one.name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <div class="buttons">
+        <button class="save pointer" *ngIf="canEdit" (click)="update(one)">Зберегти</button>
+        <button class="edit pointer" (click)="canEdit=!canEdit">
+          <span *ngIf="!canEdit">Редагувати</span>
+          <span *ngIf="canEdit">Скасувати</span>
+        </button>
+        <button class="delete pointer" (click)="delete(one)">
+          Видалити
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
