@@ -1,11 +1,11 @@
-import {IProduct} from './product.model';
+import {ProductModel} from './product.model';
 
 export interface ISize {
   id?: number;
   value?: string;
-  products?: IProduct[];
+  products?: ProductModel[];
 }
 
 export class Size implements ISize {
-  constructor(public id?: number, public value?: string, public products?: IProduct[]) {}
+  constructor(public id?: number, public value?: string, public products?: ProductModel[]) {}
 }
