@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../shared/service/backend/collection.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ColourService} from '../../shared/service/backend/colors.service';
 import {ColourModel} from '../../shared/service/models/colour.model';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-color',
@@ -17,10 +18,23 @@ export class NewColorComponent implements OnInit {
   color: ColourModel = new ColourModel();
 
   constructor(private _formBuilder: FormBuilder,
-  public router: Router,
-  private _colourService: ColourService,
-  private _snackBar: MatSnackBar,
-  private  activatedRoute: ActivatedRoute) { }
+              public router: Router,
+              private _colourService: ColourService,
+              private _snackBar: MatSnackBar,
+              public dialog: MatDialog,
+              private  activatedRoute: ActivatedRoute) {
+  }
+
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save();
+      }
+    });
+  }
 
   save() {
     this.color.name = this.newColorFormGroup.get('name').value;

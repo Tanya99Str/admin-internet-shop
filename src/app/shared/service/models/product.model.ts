@@ -1,6 +1,6 @@
 import {SizeModel} from './size.model';
 import {CategoryModel} from './category.model';
-import {ISubCategory} from './sub-category.model';
+import {SubCategoryModel} from './sub-category.model';
 import {ColourModel} from './colour.model';
 import {Collection} from './collection.model';
 
@@ -23,7 +23,7 @@ export class ProductModel {
   image5?: any;
   sizes?: SizeModel[];
   categories?: CategoryModel[];
-  subCategories?: ISubCategory[];
+  subCategories?: SubCategoryModel[];
   colours?: ColourModel[];
   suggestedProducts?: ProductModel[];
   collection?: Collection;

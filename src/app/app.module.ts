@@ -30,6 +30,9 @@ import { SubCategoriesComponent } from './home/sub-categories/sub-categories.com
 import { NewSubCategoryComponent } from './home/new-sub-category/new-sub-category.component';
 import { NewSizeComponent } from './home/new-size/new-size.component';
 import { SizeComponent } from './home/size/size.component';
+import { ConfirmDeleteComponent } from './home/dialogs/confirm-delete/confirm-delete.component';
+import { ConfirmUpdateComponent } from './home/dialogs/confirm-update/confirm-update.component';
+import { ConfirmCreateComponent } from './home/dialogs/confirm-create/confirm-create.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -75,6 +78,14 @@ const routes: Routes = [
     NewSubCategoryComponent,
     NewSizeComponent,
     SizeComponent,
+    ConfirmDeleteComponent,
+    ConfirmUpdateComponent,
+    ConfirmCreateComponent,
+  ],
+  entryComponents: [
+    ConfirmDeleteComponent,
+    ConfirmUpdateComponent,
+    ConfirmCreateComponent
   ],
   imports: [
     BrowserModule,

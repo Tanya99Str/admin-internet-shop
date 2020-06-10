@@ -6,15 +6,16 @@ import {ColourModel} from '../../shared/service/models/colour.model';
 import {HttpResponse} from '@angular/common/http';
 import {ColourService} from '../../shared/service/backend/colors.service';
 import {Collection} from '../../shared/service/models/collection.model';
-import {ISubCategory} from '../../shared/service/models/sub-category.model';
+import {SubCategoryModel} from '../../shared/service/models/sub-category.model';
 import {CategoryModel} from '../../shared/service/models/category.model';
 import {SizeModel} from '../../shared/service/models/size.model';
 import {CategoryService} from '../../shared/service/backend/category.service';
 import {SubCategoryService} from '../../shared/service/backend/sub-category.service';
 import {SizeService} from '../../shared/service/backend/size.service';
 import {ProductService} from '../../shared/service/backend/product.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {CollectionService} from '../../shared/service/backend/collection.service';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-product',
@@ -27,7 +28,7 @@ export class NewProductComponent implements OnInit {
   colours?: ColourModel[];
   sizes: SizeModel[] = [];
   categories: CategoryModel[] = [];
-  subcategories: ISubCategory[] = [];
+  subcategories: SubCategoryModel[] = [];
   collections: Collection[] = [];
   newProduct: ProductModel = new ProductModel();
 
@@ -40,8 +41,20 @@ export class NewProductComponent implements OnInit {
               private _sizeService: SizeService,
               private _productService: ProductService,
               private _snackBar: MatSnackBar,
+              public dialog: MatDialog,
               private  activatedRoute: ActivatedRoute) {
     this.loadAll();
+  }
+
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addNewProduct();
+      }
+    });
   }
 
   ngOnInit() {
@@ -60,7 +73,7 @@ export class NewProductComponent implements OnInit {
   loadAll(): void {
       this._sizeService.query().subscribe((res: HttpResponse<SizeModel[]>) => (this.sizes = res.body || []));
       this._categoryService.query().subscribe((res: HttpResponse<CategoryModel[]>) => (this.categories = res.body || []));
-      this._subCategoryService.query().subscribe((res: HttpResponse<ISubCategory[]>) => (this.subcategories = res.body || []));
+      this._subCategoryService.query().subscribe((res: HttpResponse<SubCategoryModel[]>) => (this.subcategories = res.body || []));
       this._colourService.query().subscribe((res: HttpResponse<ColourModel[]>) => (this.colours = res.body || []));
       this._collectionService.query().subscribe((res: HttpResponse<Collection[]>) => (this.collections = res.body || []));
   }

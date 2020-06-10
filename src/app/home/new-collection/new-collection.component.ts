@@ -6,9 +6,10 @@ import {CategoryService} from '../../shared/service/backend/category.service';
 import {SubCategoryService} from '../../shared/service/backend/sub-category.service';
 import {SizeService} from '../../shared/service/backend/size.service';
 import {ProductService} from '../../shared/service/backend/product.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {CollectionService} from '../../shared/service/backend/collection.service';
 import {Collection} from '../../shared/service/models/collection.model';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-collection',
@@ -24,11 +25,23 @@ export class NewCollectionComponent implements OnInit {
               public router: Router,
               private _collectionService: CollectionService,
               private _snackBar: MatSnackBar,
+              public dialog: MatDialog,
               private  activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.newCollectionFormGroup = this._formBuilder.group({
       name: ['', [Validators.required]],
+    });
+  }
+
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save();
+      }
     });
   }
 

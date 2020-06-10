@@ -3,8 +3,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Collection} from '../../shared/service/models/collection.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CollectionService} from '../../shared/service/backend/collection.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {CategoryService} from '../../shared/service/backend/category.service';
+import {CategoryModel} from '../../shared/service/models/category.model';
+import {ConfirmUpdateComponent} from '../dialogs/confirm-update/confirm-update.component';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-category',
@@ -19,7 +22,20 @@ export class NewCategoryComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               public router: Router,
               private _categoryService: CategoryService,
+              public dialog: MatDialog,
               private _snackBar: MatSnackBar) { }
+
+
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save();
+      }
+    });
+  }
 
   save() {
     this.newCategory.name = this.newCategoryFormGroup.get('name').value;

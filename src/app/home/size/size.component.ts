@@ -3,10 +3,13 @@ import {SizeModel} from '../../shared/service/models/size.model';
 import {HttpResponse} from '@angular/common/http';
 import {Collection} from '../../shared/service/models/collection.model';
 import {CategoryService} from '../../shared/service/backend/category.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {SizeService} from '../../shared/service/backend/size.service';
+import {ConfirmDeleteComponent} from '../dialogs/confirm-delete/confirm-delete.component';
+import {ColourModel} from '../../shared/service/models/colour.model';
+import {ConfirmUpdateComponent} from '../dialogs/confirm-update/confirm-update.component';
 
 @Component({
   selector: 'app-size',
@@ -22,6 +25,7 @@ export class SizeComponent implements OnInit {
               private _snackBar: MatSnackBar,
               private  activatedRoute: ActivatedRoute,
               private _formBuilder: FormBuilder,
+              public dialog: MatDialog,
               public router: Router) {
     this.init();
   }
@@ -34,6 +38,28 @@ export class SizeComponent implements OnInit {
     }, error => {
       console.error(error);
       this.info('Виникла проблема. Спробуйте, будь ласка, пізніше.');
+    });
+  }
+
+  confirmDelete(one: SizeModel) {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.delete(one);
+      }
+    });
+  }
+
+  confirmChange(one: SizeModel) {
+    const dialogRef = this.dialog.open(ConfirmUpdateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.update(one);
+      }
     });
   }
 

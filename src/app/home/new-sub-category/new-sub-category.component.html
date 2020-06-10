@@ -1,1 +1,25 @@
-<p>new-sub-category works!</p>
+<div class="container">
+  <div class="content-header">
+    <h1>Додати підкатегорію</h1>
+  </div>
+  <div class="content">
+    <form [formGroup]="newSubCategoryFormGroup">
+      <mat-form-field style="width: 40%;">
+        <mat-label>Назва</mat-label>
+        <input matInput formControlName="name" type="text">
+        <mat-error *ngIf="newSubCategoryFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+      </mat-form-field>
+      <div class="select-category">
+        <h2>Оберіть категорію: </h2>
+        <mat-radio-button name="category" *ngFor="let category of categories"
+                          (change)="selectCategory($event)" [value]="category" style="width: 100%; margin-top: .4vh;">
+          <span>{{category.name}} (id={{category.id}})</span>
+        </mat-radio-button>
+      </div>
+    </form>
+    <div class="buttons">
+      <button class="pointer cancel" (click)="cancel()">Скасувати</button>
+      <button class="pointer save" (click)="confirmCreate()">Зберегти</button>
+    </div>
+  </div>
+</div>

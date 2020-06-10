@@ -1,10 +1,10 @@
 import {ProductModel} from './product.model';
-import {ISubCategory} from './sub-category.model';
+import {SubCategoryModel} from './sub-category.model';
 
 export class CategoryModel {
   id?: number;
   name?: string;
-  subCategories?: ISubCategory[];
+  subCategories?: SubCategoryModel[];
   products?: ProductModel[];
 }
 

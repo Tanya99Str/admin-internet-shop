@@ -4,8 +4,9 @@ import {Collection} from '../../shared/service/models/collection.model';
 import {SizeModel} from '../../shared/service/models/size.model';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../shared/service/backend/category.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {SizeService} from '../../shared/service/backend/size.service';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-size',
@@ -20,8 +21,20 @@ export class NewSizeComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
               public router: Router,
               private _sizeService: SizeService,
-
+              public dialog: MatDialog,
               private _snackBar: MatSnackBar) { }
+
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save();
+      }
+    });
+  }
+
   save() {
     this.newSize.value = this.newSizeFormGroup.get('name').value;
     this._sizeService.create(this.newSize).subscribe(next => {
