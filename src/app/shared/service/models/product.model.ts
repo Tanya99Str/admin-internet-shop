@@ -1,7 +1,7 @@
-import {ISize} from './size.model';
-import {ICategory} from './category.model';
-import {ISubCategory} from './sub-category.model';
-import {IColour} from './colour.model';
+import {SizeModel} from './size.model';
+import {CategoryModel} from './category.model';
+import {SubCategoryModel} from './sub-category.model';
+import {ColourModel} from './colour.model';
 import {Collection} from './collection.model';
 
 export class ProductModel {
@@ -21,10 +21,10 @@ export class ProductModel {
   image4?: any;
   image5ContentType?: string;
   image5?: any;
-  sizes?: ISize[];
-  categories?: ICategory[];
-  subCategories?: ISubCategory[];
-  colours?: IColour[];
+  sizes?: SizeModel[];
+  categories?: CategoryModel[];
+  subCategories?: SubCategoryModel[];
+  colours?: ColourModel[];
   suggestedProducts?: ProductModel[];
   collection?: Collection;
   suggestedFors?: ProductModel[];

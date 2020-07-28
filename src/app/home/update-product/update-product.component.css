@@ -1,0 +1,245 @@
+.container {
+  width: 100%;
+  display: block;
+  /*padding: 4vh 10vw;*/
+  /*padding-top: 10vh;*/
+  /*margin-top: 8vh;*/
+}
+
+.content-header {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.2vh 2vw;
+  border-radius: 10px 10px 0px 0px;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.4vh;
+  color: #828282;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 2vh 0;
+}
+
+.form-left, .form-right {
+  width: 48%;
+  background: #ffffff;
+  padding: 2vh 2vw;
+}
+
+.select-color, .select-color {
+  width: 100%;
+  display: block;
+  padding: 1.4vh 0;
+  border-top: 0.5px solid #E2E2E2;
+  margin-top: 2vh;
+}
+
+.select-color {
+  padding-bottom: 0;
+}
+
+ .one-size {
+  margin-right: 2.7vw;
+}
+
+.colors, .sizes {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.one-color {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 1vh;
+}
+
+.colors {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+h2, h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2vh;
+  margin-bottom: 1.2vh;
+  color: #757575;
+
+}
+
+.color {
+  width: 2vh;
+  height: 2vh;
+  border-radius: 100%;
+  background: #FFE600;
+  margin-left: .5vw!important;
+  border: .1px solid black;
+  margin-right: .4vw;
+}
+
+.change {
+  width: 100%;
+  display: block;
+}
+
+.current {
+  width: 100%;
+  display: block;
+}
+
+.current span {
+  color: rgba(0, 0, 0, .87) !important;
+  font-weight: normal !important;
+}
+
+ul {
+  padding: 0 2vw !important;
+  margin: 0 !important;
+}
+
+ul li {
+  color: rgba(0, 0, 0, .87);
+  font-size: 2vh;
+  margin-top: .7vh;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1.4vh;
+}
+
+.buttons button {
+  border: none!important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2vh;
+  padding: 1.2vh 2vw;
+  text-align: center;
+  color: #FFFFFF;
+  float: right;
+  border-radius: 4px;
+}
+
+.delete {
+  background: rgba(115, 113, 113, 0.61);
+  margin-right: 1vw;
+  /*border: 1px solid rgba(115, 113, 113, 0.81);*/
+}
+
+.delete:hover {
+  background: rgba(115, 113, 113, 0.81) !important;
+}
+
+.change-btn, .save {
+  background: #EA97AC;
+  border: none!important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2vh;
+  padding: 1.2vh 2vw;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 1.4vh;
+  float: right;
+  border-radius: 4px;
+}
+
+.save {
+  margin-top: 0;
+}
+
+.change-btn:hover, .save:hover {
+  background: rgba(250, 93, 120, 0.93);
+}
+
+.container-images {
+  width: 100%;
+  background: #ffffff;
+  padding: 2.5vh 2vw;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.one-photo {
+  width: 15%;
+  height: 25vh;
+  margin-right: 2%;
+  /*background-image: url("../../../assets/images/photo_2020-04-24 21.16.07.jpeg");*/
+  border-radius: 10px;
+  /*margin-top: 2vh;*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.one-photo button {
+  background: none!important;
+  border: none!important;
+  position: absolute;
+  top: -7px;
+  right: -7px;
+}
+
+.one-photo input[type='file'] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.one-photo {
+  background: #EFEFEF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.one-photo:hover {
+  background: rgba(158, 157, 157, 0.42);
+}
+
+.one-photo:hover svg * {
+  fill: #9E9D9D;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footer {
+  width: 100%;
+  padding: 2vh 2vw;
+  background: #ffffff;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2vh;
+}
+

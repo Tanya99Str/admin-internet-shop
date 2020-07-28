@@ -1,9 +1,29 @@
+.container {
+  width: 100%;
+  display: block;
+}
+
+.content-header {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.2vh 2vw;
+  border-radius: 10px 10px 0px 0px;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 2.4vh;
+  color: #828282;
+}
+
 .catalog {
   width: 100%;
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 2vh;
   /*padding: 2vh 0;*/
 }
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../shared/service/backend/product.service';
 import {HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ProductModel} from '../../shared/service/models/product.model';
-import {ISize} from '../../shared/service/models/size.model';
 
 @Component({
   selector: 'app-products',

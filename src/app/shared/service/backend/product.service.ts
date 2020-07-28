@@ -34,6 +34,10 @@ export class ProductService {
     return this.http.get<ProductModel>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findProductById(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>( `${this.resourceUrl}/${id}`).pipe(catchError(err => throwError(err)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ProductModel[]>(this.resourceUrl, { params: options, observe: 'response' });

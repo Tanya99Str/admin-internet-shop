@@ -1,0 +1,13 @@
+<div class="container">
+  <button class="pointer close" [mat-dialog-close]="false">
+    <svg width="12" height="12" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0.776443" y1="1.3759" x2="22.7764" y2="23.3759" stroke="#9B9B9B" stroke-width="2"/>
+      <line x1="22.7764" y1="1.69002" x2="0.776444" y2="23.69" stroke="#9B9B9B" stroke-width="2"/>
+    </svg>
+  </button>
+  <h1>Ви впевнені, що хочете вийти?</h1>
+  <div class="buttons">
+    <button class="pointer cancel" [mat-dialog-close]="false">Ні</button>
+    <button class="pointer buy" [mat-dialog-close]="true">Так</button>
+  </div>
+</div>

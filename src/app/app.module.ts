@@ -22,6 +22,19 @@ import { NewProductComponent } from './home/new-product/new-product.component';
 import { OneProductComponent } from './home/products/one-product/one-product.component';
 import { CollectionsComponent } from './home/collections/collections.component';
 import { NewCollectionComponent } from './home/new-collection/new-collection.component';
+import { ColorsComponent } from './home/colors/colors.component';
+import { NewColorComponent } from './home/new-color/new-color.component';
+import { NewCategoryComponent } from './home/new-category/new-category.component';
+import { CategoriesComponent } from './home/categories/categories.component';
+import { SubCategoriesComponent } from './home/sub-categories/sub-categories.component';
+import { NewSubCategoryComponent } from './home/new-sub-category/new-sub-category.component';
+import { NewSizeComponent } from './home/new-size/new-size.component';
+import { SizeComponent } from './home/size/size.component';
+import { ConfirmDeleteComponent } from './home/dialogs/confirm-delete/confirm-delete.component';
+import { ConfirmUpdateComponent } from './home/dialogs/confirm-update/confirm-update.component';
+import { ConfirmCreateComponent } from './home/dialogs/confirm-create/confirm-create.component';
+import { UpdateProductComponent } from './home/update-product/update-product.component';
+import { ConfirmExitComponent } from './home/dialogs/confirm-exit/confirm-exit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -29,8 +42,17 @@ const routes: Routes = [
       {path: '', redirectTo: 'products', pathMatch: 'full'},
       {path: 'products', component: ProductsComponent},
       {path: 'new-product', component: NewProductComponent},
+      {path: 'update-product', component: UpdateProductComponent},
       {path: 'collections', component: CollectionsComponent},
       {path: 'new-collection', component: NewCollectionComponent},
+      {path: 'colors', component: ColorsComponent},
+      {path: 'new-color', component: NewColorComponent},
+      {path: 'categories', component: CategoriesComponent},
+      {path: 'new-category', component: NewCategoryComponent},
+      {path: 'sub-categories', component: SubCategoriesComponent},
+      {path: 'new-sub-category', component: NewSubCategoryComponent},
+      {path: 'size', component: SizeComponent},
+      {path: 'new-size', component: NewSizeComponent},
     ]},
   {path: 'sign', component: SignComponent, children: [
       {path: '', redirectTo: 'in', pathMatch: 'full'},
@@ -51,6 +73,25 @@ const routes: Routes = [
     OneProductComponent,
     CollectionsComponent,
     NewCollectionComponent,
+    ColorsComponent,
+    NewColorComponent,
+    NewCategoryComponent,
+    CategoriesComponent,
+    SubCategoriesComponent,
+    NewSubCategoryComponent,
+    NewSizeComponent,
+    SizeComponent,
+    ConfirmDeleteComponent,
+    ConfirmUpdateComponent,
+    ConfirmCreateComponent,
+    UpdateProductComponent,
+    ConfirmExitComponent,
+  ],
+  entryComponents: [
+    ConfirmDeleteComponent,
+    ConfirmUpdateComponent,
+    ConfirmCreateComponent,
+    ConfirmExitComponent
   ],
   imports: [
     BrowserModule,

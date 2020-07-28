@@ -1,0 +1,37 @@
+<div class="container-content">
+  <div class="content-header">
+    <h1>Підкатегорії</h1>
+  </div>
+  <div class="list-subcategories">
+    <div class="one-elem" *ngFor="let one of subCategory">
+      <div class="category-subcategory">
+        <mat-form-field style="width: 50%;">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" [disabled]="!canEdit" [(ngModel)]="one.name"
+                 [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+        <div class="categories" *ngIf="!canEdit">
+          <h2>Категорія: </h2>
+          <p>{{one.category?.name}}</p>
+        </div>
+        <div class="select-category" *ngIf="canEdit">
+          <h2>Оберіть категорію: </h2>
+          <mat-radio-button name="category" *ngFor="let category of categories"
+                            (change)="selectCategory($event, one)" [value]="category" style="width: 100%; margin-top: .4vh;">
+            <span>{{category?.name}} (id={{category?.id}})</span>
+          </mat-radio-button>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="save pointer" *ngIf="canEdit" (click)="confirmChange(one)">Зберегти</button>
+        <button class="edit pointer" (click)="canEdit=!canEdit">
+          <span *ngIf="!canEdit">Редагувати</span>
+          <span *ngIf="canEdit" (click)="init()">Скасувати</span>
+        </button>
+        <button class="delete pointer" (click)="confirmDelete(one)">
+          Видалити
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

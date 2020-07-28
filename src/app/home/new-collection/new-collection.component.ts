@@ -6,9 +6,10 @@ import {CategoryService} from '../../shared/service/backend/category.service';
 import {SubCategoryService} from '../../shared/service/backend/sub-category.service';
 import {SizeService} from '../../shared/service/backend/size.service';
 import {ProductService} from '../../shared/service/backend/product.service';
-import {MatSnackBar} from '@angular/material';
+import {MatDialog, MatSnackBar} from '@angular/material';
 import {CollectionService} from '../../shared/service/backend/collection.service';
 import {Collection} from '../../shared/service/models/collection.model';
+import {ConfirmCreateComponent} from '../dialogs/confirm-create/confirm-create.component';
 
 @Component({
   selector: 'app-new-collection',
@@ -24,6 +25,7 @@ export class NewCollectionComponent implements OnInit {
               public router: Router,
               private _collectionService: CollectionService,
               private _snackBar: MatSnackBar,
+              public dialog: MatDialog,
               private  activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -32,16 +34,26 @@ export class NewCollectionComponent implements OnInit {
     });
   }
 
+  confirmCreate() {
+    const dialogRef = this.dialog.open(ConfirmCreateComponent, {
+      width: '25vw',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.save();
+      }
+    });
+  }
+
   save() {
     this.newCollection.name = this.newCollectionFormGroup.get('name').value;
     this._collectionService.create(this.newCollection).subscribe(next => {
       this.info('Дані успішно додано.');
-      this.router.navigateByUrl('/home/products');
+      this.router.navigateByUrl('/home/collections');
     }, error => {
       console.error(error);
       this.info('Виникла проблема. Спробуйте, будь ласка, пізніше.');
     });
-
   }
 
   cancel() {

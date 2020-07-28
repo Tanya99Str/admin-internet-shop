@@ -1,12 +1,14 @@
 import {HttpClient, HttpResponse} from '@angular/common/http';
-import {IColour} from '../models/colour.model';
+import {ColourModel} from '../models/colour.model';
 import {Injectable} from '@angular/core';
 import {SERVER_API_URL} from '../../config/url';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {createRequestOption, Search} from '../../utils/request-util';
+import {ProductModel} from '../models/product.model';
+import {catchError} from 'rxjs/operators';
 
-type EntityResponseType = HttpResponse<IColour>;
-type EntityArrayResponseType = HttpResponse<IColour[]>;
+type EntityResponseType = HttpResponse<ColourModel>;
+type EntityArrayResponseType = HttpResponse<ColourModel[]>;
 
 @Injectable({ providedIn: 'root' })
 export class ColourService {
@@ -15,21 +17,27 @@ export class ColourService {
 
   constructor(protected http: HttpClient) {}
 
-  create(colour: IColour): Observable<EntityResponseType> {
-    return this.http.post<IColour>(this.resourceUrl, colour, { observe: 'response' });
+  create(colour: ColourModel): Observable<EntityResponseType> {
+    return this.http.post<ColourModel>(this.resourceUrl, colour, { observe: 'response' });
   }
 
-  update(colour: IColour): Observable<EntityResponseType> {
-    return this.http.put<IColour>(this.resourceUrl, colour, { observe: 'response' });
+  newColor(color: ColourModel): Observable<ColourModel> {
+    return this.http.post<ColourModel>(SERVER_API_URL + '/api/colours',
+      JSON.stringify(color)).pipe(catchError(err => throwError(err)));
+  }
+
+
+  update(colour: ColourModel): Observable<EntityResponseType> {
+    return this.http.put<ColourModel>(this.resourceUrl, colour, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IColour>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http.get<ColourModel>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IColour[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<ColourModel[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -38,6 +46,6 @@ export class ColourService {
 
   search(req: Search): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IColour[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+    return this.http.get<ColourModel[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
   }
 }

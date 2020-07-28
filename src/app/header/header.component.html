@@ -5,20 +5,22 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="products">Товар</button>
       <button mat-menu-item routerLink="collections">Колекції</button>
-      <button mat-menu-item>Категорії</button>
-      <button mat-menu-item>Підкатегорії</button>
-      <button mat-menu-item>Розміри</button>
+      <button mat-menu-item routerLink="colors">Кольори</button>
+      <button mat-menu-item routerLink="categories">Категорії</button>
+      <button mat-menu-item routerLink="sub-categories">Підкатегорії</button>
+      <button mat-menu-item routerLink="size">Розміри</button>
     </mat-menu>
     <button mat-button [matMenuTriggerFor]="menuAddNew" style="color: #757575">Додати</button>
     <mat-menu #menuAddNew="matMenu">
       <button mat-menu-item routerLink="new-product">Товар</button>
       <button mat-menu-item routerLink="new-collection">Колекцію</button>
-      <button mat-menu-item>Категорію</button>
-      <button mat-menu-item>Підкатегорію</button>
-      <button mat-menu-item>Розмір</button>
+      <button mat-menu-item routerLink="new-color">Колір</button>
+      <button mat-menu-item routerLink="new-category">Категорію</button>
+      <button mat-menu-item routerLink="new-sub-category">Підкатегорію</button>
+      <button mat-menu-item routerLink="new-size">Розмір</button>
     </mat-menu>
   </div>
-  <button class="pointer">
+  <button class="pointer" (click)="confirmExit()">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13 3H11V13H13V3ZM17.83 5.17L16.41 6.59C17.99 7.86 19 9.81 19 12C19 15.87 15.87 19 12 19C8.13 19 5 15.87 5 12C5 9.81 6.01 7.86 7.58 6.58L6.17 5.17C4.23 6.82 3 9.26 3 12C3 16.97 7.03 21 12 21C16.97 21 21 16.97 21 12C21 9.26 19.77 6.82 17.83 5.17Z" fill="#FB9CB4"/>
     </svg>
