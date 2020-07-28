@@ -1,0 +1,338 @@
+<div class="container">
+  <!--<div class="none">-->
+  <!--<img src="../../assets/images/Group-2.png" alt="" style="width: 14vw;">-->
+  <!--<button class="pointer">Новий товар</button>-->
+  <!--</div>-->
+  <div class="content-header">
+    <h1>Редагувати товар</h1>
+  </div>
+  <div class="content">
+    <div class="form-left" *ngIf="product">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Назва</mat-label>
+        <input matInput type="text" [(ngModel)]="product.name" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Ціна</mat-label>
+        <input matInput type="text" [(ngModel)]="product.price" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Опис</mat-label>
+        <textarea matInput [(ngModel)]="product.description" [ngModelOptions]="{standalone: true}"></textarea>
+      </mat-form-field>
+      <div class="select-color">
+        <div class="current" *ngIf="!editColor">
+          <h2>Кольори</h2>
+          <div class="colors">
+            <!--            <div class="one-color" *ngFor="let color of product.colours">-->
+            <!--              <div class="color" [ngStyle]="{'background': color?.name}"></div>-->
+            <!--            </div>-->
+            <ul>
+              <li *ngFor="let color of product.colours">
+                <div class="one-color">
+                  <div class="color" [ngStyle]="{'background': color?.name}"></div>
+                  {{color.name}}
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeColor()">Змінити кольори</button>
+          </div>
+        </div>
+
+        <div class="change" *ngIf="editColor">
+          <h3>Оберіть кольори</h3>
+          <mat-selection-list (selectionChange)="changeSelectColors($event)"
+                              style="display: flex!important; flex-wrap: wrap!important;">
+            <mat-list-option *ngFor="let color of colours;" [value]="color" style="width: 20%!important;"
+                             [selected]="selectedColor">
+              <div class="color" [ngStyle]="{'background': color?.name}"></div>
+            </mat-list-option>
+          </mat-selection-list>
+          <div class="buttons">
+            <!--            <button class="pointer delete">Скасувати</button>-->
+            <!--            <button class="pointer save" (click)="editColor=!editColor">Зберегти</button>-->
+          </div>
+        </div>
+      </div>
+
+
+      <div class="select-color">
+        <div class="current" *ngIf="!editSize">
+          <h2>Розміри</h2>
+          <div class="colors">
+            <ul>
+              <li *ngFor="let size of product.sizes">{{size.value}}</li>
+            </ul>
+          </div>
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeSizes()">Змінити розміри</button>
+          </div>
+        </div>
+
+        <div class="change" *ngIf="editSize">
+          <h3>Оберіть розміри</h3>
+          <mat-selection-list (selectionChange)="changeSelectSizes($event)"
+                              style="display: flex!important; flex-wrap: wrap!important;">
+            <mat-list-option *ngFor="let size of sizes;" [value]="size" style="width: 20%!important;"
+                             [selected]="selectedColor">
+              <span class="standard-text">{{size.value}}</span>
+            </mat-list-option>
+          </mat-selection-list>
+          <div class="buttons">
+            <!--            <button class="pointer save" (click)="editSize=!editSize">Зберегти</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-right" *ngIf="product">
+      <mat-form-field style="width: 100%;">
+        <mat-label>Матеріал</mat-label>
+        <input matInput type="text" [(ngModel)]="product.material" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Склад</mat-label>
+        <input matInput type="text" [(ngModel)]="product.madeOf" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+
+
+      <div class="select-color">
+        <div class="current" *ngIf="!editCollection">
+          <h2>Колекція: <span>{{product.collection.name}}</span></h2>
+
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeCollection()">Змінити колекцію</button>
+          </div>
+        </div>
+
+        <div class="change" *ngIf="editCollection">
+          <h3>Оберіть колекцію</h3>
+          <mat-radio-button name="category" *ngFor="let collection of collections"
+                            (change)="selectCollection($event)" [value]="collection"
+                            style="width: 100%; margin-top: 1vh;">
+            <span>{{collection?.name}}</span>
+          </mat-radio-button>
+          <div class="buttons">
+          </div>
+        </div>
+      </div>
+
+      <div class="select-color">
+        <div class="current" *ngIf="!editCategory">
+          <h2>Категорії</h2>
+          <ul>
+            <li *ngFor="let category of product.categories">{{category.name}}</li>
+          </ul>
+
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeCategory()">Змінити категорії</button>
+          </div>
+        </div>
+        <div class="change" *ngIf="editCategory">
+          <h3>Оберіть категорії</h3>
+          <mat-selection-list (selectionChange)="changeSelectCategories($event)">
+            <mat-list-option *ngFor="let category of categories" [value]="category">
+              <span class="standard-text">{{category.name}}</span>
+            </mat-list-option>
+          </mat-selection-list>
+          <div class="buttons">
+          </div>
+        </div>
+      </div>
+
+      <div class="select-color">
+        <div class="current" *ngIf="!editSubCategory">
+          <h2>Підкатегорії</h2>
+          <ul>
+            <li *ngFor="let category of product.categories">{{category.name}}</li>
+          </ul>
+
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeSubCategory()">Змінити підкатегорії</button>
+          </div>
+        </div>
+        <div class="change" *ngIf="editSubCategory">
+          <h3>Оберіть підкатегорії</h3>
+          <mat-selection-list (selectionChange)="changeSelectSubCategories($event)">
+            <mat-list-option *ngFor="let subcategory of subcategories" [value]="subcategory">
+              <span class="standard-text">{{subcategory.name}}</span>
+            </mat-list-option>
+          </mat-selection-list>
+          <div class="buttons">
+          </div>
+        </div>
+      </div>
+
+      <div class="select-color">
+        <div class="current" *ngIf="!editSuggestedProducts">
+          <h2>Рекомендовані товари</h2>
+          <ul>
+            <li *ngFor="let suggestedProducts of product.suggestedProducts">{{suggestedProducts.name}}</li>
+          </ul>
+
+          <div class="buttons">
+            <button class="pointer change-btn" (click)="changeSuggestedProduct()">Змінити рекомендації</button>
+          </div>
+        </div>
+        <div class="change" *ngIf="editSuggestedProducts">
+          <h3>Оберіть рекомендовані товари</h3>
+          <mat-selection-list (selectionChange)="changeSuggestedProducts($event)">
+            <mat-list-option *ngFor="let product of products" [value]="product">
+              <span class="standard-text">{{product.name}}</span>
+            </mat-list-option>
+          </mat-selection-list>
+          <div class="buttons">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-images">
+    <div class="one-photo pointer" *ngIf="!product?.image1">
+      <input type="file" id="file_image1" (change)="setFileData($event, 'image1', true)" accept="image/*"/>
+      <button type="button" (click)="clearInputImage('image1', 'image1ContentType', 'file_image1')"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo" *ngIf="productPhotoFormGroup.get('image1').value"
+           [ngStyle]="{'background-image':'url(data:'+ productPhotoFormGroup.get('image1ContentType').value + ';base64,' + productPhotoFormGroup.get('image1').value + ')'}"
+      ></div>
+      <svg  *ngIf="!productPhotoFormGroup.get('image1').value"
+            width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+              fill="#D0D0D0"/>
+      </svg>
+    </div>
+    <div class="one-photo pointer" *ngIf="product?.image1&&!productPhotoFormGroup.get('image1').value">
+      <button type="button" (click)="delete1Image()"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo"
+           [ngStyle]="{'background-image':'url(data:'+(product?.image1ContentType)+';base64,' + product?.image1 + ')'}"
+           *ngIf="product?.image1"></div>
+    </div>
+    <div class="one-photo pointer" *ngIf="!product?.image2">
+      <input type="file" id="file_image2" (change)="setFileData($event, 'image2', true)" accept="image/*"/>
+      <button type="button" (click)="clearInputImage('image2', 'image2ContentType', 'file_image2')"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo" *ngIf="productPhotoFormGroup.get('image2').value"
+           [ngStyle]="{'background-image':'url(data:'+ productPhotoFormGroup.get('image2ContentType').value + ';base64,' + productPhotoFormGroup.get('image2').value + ')'}"
+      ></div>
+      <svg  *ngIf="!productPhotoFormGroup.get('image2').value"
+            width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+              fill="#D0D0D0"/>
+      </svg>
+    </div>
+    <div class="one-photo pointer" *ngIf="product?.image2&&!productPhotoFormGroup.get('image2').value">
+      <button type="button" (click)="delete2Image()"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo"
+           [ngStyle]="{'background-image':'url(data:'+(product?.image2ContentType)+';base64,' + product?.image2 + ')'}"
+           *ngIf="product?.image2"></div>
+    </div>
+    <div class="one-photo pointer" *ngIf="!product?.image3">
+      <input type="file" id="file_image3" (change)="setFileData($event, 'image3', true)" accept="image/*"/>
+      <button type="button" (click)="clearInputImage('image3', 'image3ContentType', 'file_image3')"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo" *ngIf="productPhotoFormGroup.get('image3').value"
+           [ngStyle]="{'background-image':'url(data:'+ productPhotoFormGroup.get('image3ContentType').value + ';base64,' + productPhotoFormGroup.get('image3').value + ')'}"
+      ></div>
+      <svg  *ngIf="!productPhotoFormGroup.get('image3').value"
+            width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+              fill="#D0D0D0"/>
+      </svg>
+    </div>
+    <div class="one-photo pointer" *ngIf="product?.image3&&!productPhotoFormGroup.get('image3').value">
+      <button type="button" (click)="delete3Image()"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo"
+           [ngStyle]="{'background-image':'url(data:'+(product?.image3ContentType)+';base64,' + product?.image3 + ')'}"
+           *ngIf="product?.image3"></div>
+    </div>
+    <div class="one-photo pointer" *ngIf="!product?.image4">
+      <input type="file" id="file_image4" (change)="setFileData($event, 'image4', true)" accept="image/*"/>
+      <button type="button" (click)="clearInputImage('image4', 'image4ContentType', 'file_image4')"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo" *ngIf="productPhotoFormGroup.get('image4').value"
+           [ngStyle]="{'background-image':'url(data:'+ productPhotoFormGroup.get('image4ContentType').value + ';base64,' + productPhotoFormGroup.get('image4').value + ')'}"
+      ></div>
+      <svg  *ngIf="!productPhotoFormGroup.get('image4').value"
+            width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+              fill="#D0D0D0"/>
+      </svg>
+    </div>
+    <div class="one-photo pointer" *ngIf="product?.image4&&!productPhotoFormGroup.get('image4').value">
+      <button type="button" (click)="delete4Image()"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo"
+           [ngStyle]="{'background-image':'url(data:'+(product?.image4ContentType)+';base64,' + product?.image4 + ')'}"
+           *ngIf="product?.image4"></div>
+    </div>
+    <div class="one-photo pointer" *ngIf="!product?.image5">
+      <input type="file" id="file_image5" (change)="setFileData($event, 'image5', true)" accept="image/*"/>
+      <button type="button" (click)="clearInputImage('image5', 'image5ContentType', 'file_image5')"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo" *ngIf="productPhotoFormGroup.get('image5').value"
+           [ngStyle]="{'background-image':'url(data:'+ productPhotoFormGroup.get('image5ContentType').value + ';base64,' + productPhotoFormGroup.get('image5').value + ')'}"
+      ></div>
+      <svg  *ngIf="!productPhotoFormGroup.get('image5').value"
+            width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+              fill="#D0D0D0"/>
+      </svg>
+    </div>
+    <div class="one-photo pointer" *ngIf="product?.image5&&!productPhotoFormGroup.get('image5').value">
+      <button type="button" (click)="delete5Image()"
+              class="pointer">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+        </svg>
+      </button>
+      <div class="photo"
+           [ngStyle]="{'background-image':'url(data:'+(product?.image5ContentType)+';base64,' + product?.image5 + ')'}"
+           *ngIf="product?.image5"></div>
+    </div>
+  </div>
+  <div class="footer">
+    <button class="pointer change-btn" (click)="confirmChange()">Зберегти</button>
+  </div>
+
+
+</div>

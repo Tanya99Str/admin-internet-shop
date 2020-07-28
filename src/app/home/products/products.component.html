@@ -1,9 +1,14 @@
-<div class="catalog">
-  <div class="none" *ngIf="products?.length==0">
-  <img src="../../assets/images/Group-2.png" alt="" style="width: 14vw;">
-  <button class="pointer" routerLink="new-product">Новий товар</button>
+<div class="container">
+  <div class="content-header">
+    <h1>Каталог товарів</h1>
   </div>
-  <div class="one-elem" *ngFor="let one of products;trackBy: trackId">
-    <app-one-product [product]="one" (productsChange)="init()"></app-one-product>
+  <div class="catalog">
+    <div class="none" *ngIf="products?.length==0">
+      <img src="../../assets/images/Group-2.png" alt="" style="width: 14vw;">
+      <button class="pointer" routerLink="../new-product">Новий товар</button>
+    </div>
+    <div class="one-elem" *ngFor="let one of products;trackBy: trackId">
+      <app-one-product [product]="one" (productsChange)="init()"></app-one-product>
+    </div>
   </div>
 </div>

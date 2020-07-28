@@ -63,6 +63,7 @@ h2 {
   padding: 1.2vh 2vw;
   text-align: center;
   color: #FFFFFF;
+  border-radius: 4px;
 }
 
 .cancel {

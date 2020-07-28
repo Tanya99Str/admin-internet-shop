@@ -33,6 +33,8 @@ import { SizeComponent } from './home/size/size.component';
 import { ConfirmDeleteComponent } from './home/dialogs/confirm-delete/confirm-delete.component';
 import { ConfirmUpdateComponent } from './home/dialogs/confirm-update/confirm-update.component';
 import { ConfirmCreateComponent } from './home/dialogs/confirm-create/confirm-create.component';
+import { UpdateProductComponent } from './home/update-product/update-product.component';
+import { ConfirmExitComponent } from './home/dialogs/confirm-exit/confirm-exit.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -40,6 +42,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'products', pathMatch: 'full'},
       {path: 'products', component: ProductsComponent},
       {path: 'new-product', component: NewProductComponent},
+      {path: 'update-product', component: UpdateProductComponent},
       {path: 'collections', component: CollectionsComponent},
       {path: 'new-collection', component: NewCollectionComponent},
       {path: 'colors', component: ColorsComponent},
@@ -81,11 +84,14 @@ const routes: Routes = [
     ConfirmDeleteComponent,
     ConfirmUpdateComponent,
     ConfirmCreateComponent,
+    UpdateProductComponent,
+    ConfirmExitComponent,
   ],
   entryComponents: [
     ConfirmDeleteComponent,
     ConfirmUpdateComponent,
-    ConfirmCreateComponent
+    ConfirmCreateComponent,
+    ConfirmExitComponent
   ],
   imports: [
     BrowserModule,

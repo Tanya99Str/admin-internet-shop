@@ -51,3 +51,13 @@ button:focus {
 .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: .5375em 0 !important;
 }
+
+.mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
+  flex-direction: row!important;
+}
+
+.standard-text {
+  color: rgba(0, 0, 0, .87) !important;
+  font-size: 2vh!important;
+  margin-left: .5vw!important;
+}

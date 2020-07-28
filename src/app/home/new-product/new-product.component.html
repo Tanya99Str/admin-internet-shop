@@ -6,88 +6,248 @@
   <div class="content-header">
     <h1>Додати товар</h1>
   </div>
-  <form class="content-form" [formGroup]="newProductFormGroup">
-    <div class="form-left">
-      <mat-form-field style="width: 100%;">
-        <mat-label>Назва</mat-label>
-        <input matInput formControlName="name" type="text">
-        <mat-error *ngIf="newProductFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Ціна</mat-label>
-        <input matInput formControlName="price" type="text">
-        <mat-error *ngIf="newProductFormGroup.get('price').hasError('required')">Введіть ціну</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Опис</mat-label>
-        <textarea matInput formControlName="description"></textarea>
-        <mat-error *ngIf="newProductFormGroup.get('description').hasError('required')">Введіть опис</mat-error>
-      </mat-form-field>
-      <div class="select-color">
-        <h2>Кольори</h2>
-        <div class="colors">
-          <div class="one-color">
-            <mat-checkbox>
-              <div class="color"></div>
-            </mat-checkbox>
+  <form [formGroup]="newProductFormGroup">
+    <div class="content-form">
+      <div class="form-left">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Назва</mat-label>
+          <input matInput formControlName="name" type="text">
+          <mat-error *ngIf="newProductFormGroup.get('name').hasError('required')">Введіть назву</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Ціна</mat-label>
+          <input matInput formControlName="price" type="text">
+          <mat-error *ngIf="newProductFormGroup.get('price').hasError('required')">Введіть ціну</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Опис</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+          <mat-error *ngIf="newProductFormGroup.get('description').hasError('required')">Введіть опис</mat-error>
+        </mat-form-field>
+        <div class="select-color">
+          <h2>Кольори</h2>
+          <mat-selection-list (selectionChange)="changeSelectColors($event)"
+                              style="display: flex!important; flex-wrap: wrap!important;">
+            <mat-list-option *ngFor="let color of colours" [value]="color" style="width: 20%!important;">
+              <div class="color" [ngStyle]="{'background': color?.name}"></div>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <div class="select-color">
+          <h2>Розміри</h2>
+          <mat-selection-list (selectionChange)="changeSelectSizes($event)"
+                              style="display: flex!important; flex-wrap: wrap!important;">
+            <mat-list-option *ngFor="let size of sizes" [value]="size" style="width: 25%!important;">
+              <span class="standard-text">{{size.value}}</span>
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+      </div>
+      <div class="form-right">
+        <mat-form-field style="width: 100%;">
+          <mat-label>Матеріал</mat-label>
+          <input matInput formControlName="material" type="text">
+          <mat-error *ngIf="newProductFormGroup.get('material').hasError('required')">Вкажіть матеріал</mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Склад</mat-label>
+          <input matInput formControlName="madeOf" type="text">
+          <mat-error *ngIf="newProductFormGroup.get('madeOf').hasError('required')">Вкажіть склад</mat-error>
+        </mat-form-field>
+
+        <div class="block-new">
+          <div class="block-new-top">
+            <p>Колекція</p>
+            <!--          <button (click)="openMore('listCollections', 'svgCollections')" class="pointer">-->
+            <svg width="12" height="6" id="svgCollections" (click)="openMore('listCollections', 'svgCollections')"
+                 class="pointer"
+                 viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.984375 0.984375H11.0156L6 6L0.984375 0.984375Z" fill="#666666"/>
+            </svg>
+            <!--          </button>-->
+          </div>
+          <div class="block-new-bottom" id="listCollections">
+            <mat-radio-button name="category" *ngFor="let collection of collections"
+                              (change)="selectCollection($event)" [value]="collection"
+                              style="width: 100%; margin-top: 1vh;">
+              <span>{{collection?.name}}</span>
+            </mat-radio-button>
+          </div>
+        </div>
+
+        <div class="block-new">
+          <div class="block-new-top">
+            <p>Категорії</p>
+            <svg width="12" height="6" id="svgCategories" (click)="openMore('listCategories', 'svgCategories')"
+                 class="pointer"
+                 viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.984375 0.984375H11.0156L6 6L0.984375 0.984375Z" fill="#666666"/>
+            </svg>
+          </div>
+          <div class="block-new-bottom" id="listCategories">
+            <mat-selection-list (selectionChange)="changeSelectCategories($event)">
+              <mat-list-option *ngFor="let category of categories" [value]="category">
+                <span class="standard-text">{{category.name}}</span>
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+        </div>
+
+        <div class="block-new">
+          <div class="block-new-top">
+            <p>Підкатегорії</p>
+            <svg width="12" height="6" id="svgSubCategories" (click)="openMore('listSubCategories', 'svgSubCategories')"
+                 class="pointer"
+                 viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.984375 0.984375H11.0156L6 6L0.984375 0.984375Z" fill="#666666"/>
+            </svg>
+          </div>
+          <div class="block-new-bottom" id="listSubCategories">
+            <mat-selection-list (selectionChange)="changeSelectSubCategories($event)">
+              <mat-list-option *ngFor="let subCategory of subcategories" [value]="subCategory">
+                <span class="standard-text">{{subCategory.name}}</span>
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+        </div>
+
+        <div class="block-new">
+          <div class="block-new-top">
+            <p>Рекомендації</p>
+            <svg width="12" height="6" id="svgRecommendations"
+                 (click)="openMore('listRecommendations', 'svgRecommendations')"
+                 class="pointer"
+                 viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.984375 0.984375H11.0156L6 6L0.984375 0.984375Z" fill="#666666"/>
+            </svg>
+          </div>
+          <div class="block-new-bottom" id="listRecommendations">
+            <mat-selection-list (selectionChange)="changeProducts($event)">
+              <mat-list-option *ngFor="let product of products" [value]="product">
+                <span class="standard-text">{{product.name}}</span>
+              </mat-list-option>
+            </mat-selection-list>
           </div>
         </div>
       </div>
-      <div class="select-color">
-        <h2>Розміри</h2>
-        <div class="sizes">
-          <div class="one-size">
-            <mat-checkbox>
-              <span>XXS</span>
-            </mat-checkbox>
-          </div>
-        </div>
-      </div>
+<!--      <div class="form-group">-->
+<!--        <label class="form-control-label" for="field_image1">Image 1</label>-->
+<!--        <div>-->
+<!--          <img-->
+<!--            [src]="'data:' + newProductFormGroup.get('image1ContentType')!.value + ';base64,' + newProductFormGroup.get('image1')!.value"-->
+<!--            style="max-height: 100px;" *ngIf="newProductFormGroup.get('image1')!.value" alt="product image"/>-->
+<!--          <div *ngIf="newProductFormGroup.get('image1')!.value" class="form-text text-danger clearfix">-->
+<!--            <span class="pull-left">{{ newProductFormGroup.get('image1ContentType')!.value }}-->
+<!--              , {{ byteSize(newProductFormGroup.get('image1')!.value) }}</span>-->
+<!--            <button type="button" (click)="clearInputImage('image1', 'image1ContentType', 'file_image1')"-->
+<!--                    class="btn btn-secondary btn-xs pull-right">-->
+<!--              <fa-icon icon="times"></fa-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <input type="file" id="file_image1" (change)="setFileData($event, 'image1', true)" accept="image/*"/>-->
+<!--        </div>-->
+<!--        <input type="hidden" class="form-control" name="image1" id="field_image1"-->
+<!--               formControlName="image1"/>-->
+<!--        <input type="hidden" class="form-control" name="image1ContentType" id="field_image1ContentType"-->
+<!--               formControlName="image1ContentType"/>-->
+<!--      </div>-->
     </div>
-    <div class="form-right">
-      <mat-form-field style="width: 100%;">
-        <mat-label>Матеріал</mat-label>
-        <input matInput formControlName="material" type="text">
-        <mat-error *ngIf="newProductFormGroup.get('material').hasError('required')">Вкажіть матеріал</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Склад</mat-label>
-        <input matInput formControlName="madeOf" type="text">
-        <mat-error *ngIf="newProductFormGroup.get('madeOf').hasError('required')">Вкажіть склад</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Колекція</mat-label>
-        <mat-select formControlName="collection">
-          <mat-option></mat-option>
-        </mat-select>
-        <mat-error *ngIf="newProductFormGroup.get('collection').hasError('required')">Вкажіть колекцію</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Категорія</mat-label>
-        <mat-select formControlName="category">
-          <mat-option></mat-option>
-        </mat-select>
-        <mat-error *ngIf="newProductFormGroup.get('category').hasError('required')">Вкажіть колекцію</mat-error>
-      </mat-form-field>
-      <mat-form-field style="width: 100%;">
-        <mat-label>Підкатегорія</mat-label>
-        <mat-select formControlName="subCategories">
-          <mat-option></mat-option>
-        </mat-select>
-        <mat-error *ngIf="newProductFormGroup.get('subCategories').hasError('required')">Вкажіть підколекцію</mat-error>
-      </mat-form-field>
+    <div class="photos">
+      <div class="new-photo pointer">
+<!--        <img [src]="'data:' + newProductFormGroup.get('image1ContentType')!.value + ';base64,' + newProductFormGroup.get('image1')!.value"-->
+<!--          style="max-height: 100px;" *ngIf="newProductFormGroup.get('image1')!.value" alt="product image"/>-->
+<!--        <input type="file" (change)="changeImage($event, 'image1')" accept="image/*">-->
+<!--        <input type="hidden" class="form-control" name="image1" id="field_image1"-->
+<!--               formControlName="image1"/>-->
+<!--        <input type="hidden" class="form-control" name="image1ContentType" id="field_image1ContentType"-->
+<!--               formControlName="image1ContentType"/>-->
+        <input type="file" id="file_image1" (change)="setFileData($event, 'image1', true)" accept="image/*"/>
+        <button type="button" (click)="clearInputImage('image1', 'image1ContentType', 'file_image1')"
+                class="pointer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+          </svg>
+        </button>
+        <div class="photo" *ngIf="newProductFormGroup.get('image1').value"
+             [ngStyle]="{'background-image':'url(data:'+ newProductFormGroup.get('image1ContentType').value + ';base64,' + newProductFormGroup.get('image1').value + ')'}"
+             ></div>
+        <svg  *ngIf="!newProductFormGroup.get('image1').value"
+             width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
+      <div class="new-photo pointer">
+        <input type="file" id="file_image2" (change)="setFileData($event, 'image2', true)" accept="image/*"/>
+        <button type="button" (click)="clearInputImage('image2', 'image2ContentType', 'file_image2')"
+                class="pointer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+          </svg>
+        </button>
+        <div class="photo" *ngIf="newProductFormGroup.get('image2')!.value"
+             [ngStyle]="{'background-image':'url(data:'+ newProductFormGroup.get('image2ContentType')!.value + ';base64,' + newProductFormGroup.get('image2')!.value + ')'}"
+             ></div>
+        <svg  *ngIf="!newProductFormGroup.get('image2')!.value"
+             width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
+      <div class="new-photo pointer">
+        <input type="file" id="file_image3" (change)="setFileData($event, 'image3', true)" accept="image/*"/>
+        <button type="button" (click)="clearInputImage('image3', 'image3ContentType', 'file_image3')"
+                class="pointer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+          </svg>
+        </button>
+        <div class="photo" *ngIf="newProductFormGroup.get('image3')!.value"
+             [ngStyle]="{'background-image':'url(data:'+ newProductFormGroup.get('image3ContentType')!.value + ';base64,' + newProductFormGroup.get('image3')!.value + ')'}"
+             ></div>
+        <svg  *ngIf="!newProductFormGroup.get('image3')!.value"
+             width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
+      <div class="new-photo pointer">
+        <input type="file" id="file_image4" (change)="setFileData($event, 'image4', true)" accept="image/*"/>
+        <button type="button" (click)="clearInputImage('image4', 'image4ContentType', 'file_image4')"
+                class="pointer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+          </svg>
+        </button>
+        <div class="photo" *ngIf="newProductFormGroup.get('image4')!.value"
+             [ngStyle]="{'background-image':'url(data:'+ newProductFormGroup.get('image4ContentType')!.value + ';base64,' + newProductFormGroup.get('image4')!.value + ')'}"
+             ></div>
+        <svg  *ngIf="!newProductFormGroup.get('image4')!.value"
+             width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
+      <div class="new-photo pointer">
+        <input type="file" id="file_image5" (change)="setFileData($event, 'image5', true)" accept="image/*"/>
+        <button type="button" (click)="clearInputImage('image5', 'image5ContentType', 'file_image5')"
+                class="pointer">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13.9844 1.42188L8.40625 7L13.9844 12.5781L12.5781 13.9844L7 8.40625L1.42188 13.9844L0.015625 12.5781L5.59375 7L0.015625 1.42188L1.42188 0.015625L7 5.59375L12.5781 0.015625L13.9844 1.42188Z" fill="#666666"/>
+          </svg>
+        </button>
+        <div class="photo" *ngIf="newProductFormGroup.get('image5')!.value"
+             [ngStyle]="{'background-image':'url(data:'+ newProductFormGroup.get('image5ContentType')!.value + ';base64,' + newProductFormGroup.get('image5')!.value + ')'}"
+             ></div>
+        <svg  *ngIf="!newProductFormGroup.get('image5')!.value"
+             width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
+                fill="#D0D0D0"/>
+        </svg>
+      </div>
     </div>
   </form>
-  <div class="photos">
-    <div class="new-photo photo pointer">
-      <svg width="58" height="58" viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M58 33.1429H33.1429V58H24.8571V33.1429H0V24.8571H24.8571V0H33.1429V24.8571H58V33.1429Z"
-              fill="#D0D0D0"/>
-      </svg>
-    </div>
-    <div class="photo"></div>
-  </div>
   <div class="save">
-    <button class="pointer" (click)="addNewProduct()">Зберегти</button>
+    <button class="pointer" (click)="confirmCreate()">Зберегти</button>
   </div>
 </div>

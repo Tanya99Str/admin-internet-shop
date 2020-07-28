@@ -8,7 +8,9 @@
 
 .header {
   width: 100%;
-  position: fixed;
+  background: #ffffff;
+  position: relative;
+  z-index: 99999999;
   top: 0;
   left: 0;
 }
@@ -18,6 +20,8 @@
   display: block;
   padding: 4vh 10vw;
   padding-top: 10vh;
+  position: relative;
+  z-index: 10;
   /*margin-top: 8vh;*/
 }
 

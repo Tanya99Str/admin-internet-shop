@@ -13,5 +13,6 @@
     <p class="price">Ціна: {{product.price}}₴</p>
 <!--    <button class="pointer details">Деталі</button>-->
     <button class="pointer details" (click)="confirmDelete()">Видалити</button>
+    <button class="pointer details" routerLink="../update-product" [queryParams]="{product_id:product.id}">Редагувати</button>
   </div>
 </div>
